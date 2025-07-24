@@ -1,14 +1,17 @@
 import { OrbitingLogo } from "@/components/tech-stack-orbit/components/OrbittingLogo";
 import { motion } from "framer-motion";
 import { prepareOrbitGroups } from "@/components/tech-stack-orbit/utils/orbitGroupCalculations.util";
+import { cn } from "@/lib/utils";
+import type { Ref } from "react";
 
 export type TechStackOrbitProps = {
   width?: string;
   height?: string;
-  viewBox?: string;
+  className?: string;
+  ref?:Ref<SVGSVGElement>;
 };
 export const TechStackOrbit = (props: TechStackOrbitProps) => {
-  const { width = "300px", height = "300px", viewBox = "0 0 300 300" } = props;
+  const { width = "300px", height = "300px",className,ref } = props;
   const w = parseInt(width.replace("px", ""));
   const h = parseInt(height.replace("px", ""));
   const orbitGroups=prepareOrbitGroups({height:h, width:w});
@@ -19,8 +22,10 @@ export const TechStackOrbit = (props: TechStackOrbitProps) => {
       <svg
         width={width}
         height={height}
-        viewBox={viewBox}
+        viewBox={`0 0 ${w} ${h}`}
         xmlns="http://www.w3.org/2000/svg"
+        className={cn("overflow-visible", className)}
+        ref={ref}
       >
         {orbitGroups.map((group) => {
           return (

@@ -6,18 +6,18 @@ export type TopbarSectionItems ={
 
 export const topbarSectionItems: TopbarSectionItems[] = [
   {
-    href: "#experience",
-    label: "My Story",
+    href: "#my-journey",
+    label: "My Journey",
     delay:0.25
   },
   {
-    href: "#projects",
-    label: "What I’ve Built",
+    href: "#my-missions",
+    label: "Completed Missions",
     delay:0.45
   },
   {
-    href: "#contact",
-    label: "Let’s Connect",
+    href: "#join-me",
+    label: "Join My journey",
     delay:0.65
   },
 ];

@@ -1,21 +1,32 @@
 import { OrbitingLogo } from "@/components/tech-stack-orbit/components/OrbittingLogo";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { prepareOrbitGroups } from "@/components/tech-stack-orbit/utils/orbitGroupCalculations.util";
 import { cn } from "@/lib/utils";
-import type { Ref } from "react";
+import { useState, type Ref } from "react";
 
 export type TechStackOrbitProps = {
   width?: string;
   height?: string;
   className?: string;
-  ref?:Ref<SVGSVGElement>;
+  ref?: Ref<SVGSVGElement>;
 };
+
 export const TechStackOrbit = (props: TechStackOrbitProps) => {
-  const { width = "300px", height = "300px",className,ref } = props;
+  const { width = "300px", height = "300px", className, ref } = props;
+  const [isOrbitHovering, setIsOrbitHovering] = useState<boolean>(false);
   const w = parseInt(width.replace("px", ""));
   const h = parseInt(height.replace("px", ""));
-  const orbitGroups=prepareOrbitGroups({height:h, width:w});
+  const orbitGroups = prepareOrbitGroups({ height: h, width: w });
 
+  const orbitTextVariants: Variants = {
+    animateOrbitText: {
+      opacity: isOrbitHovering ? 1 : 0,
+      y: isOrbitHovering ? 0 : -20,
+      transition: {
+        duration: 1.5,
+      },
+    },
+  };
 
   return (
     <>
@@ -27,15 +38,31 @@ export const TechStackOrbit = (props: TechStackOrbitProps) => {
         className={cn("overflow-visible", className)}
         ref={ref}
       >
-        {orbitGroups.map((group) => {
+        <defs>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {orbitGroups.map((group, groupIndex) => {
           return (
-            <g>
+            <motion.g
+              onHoverStart={() => setIsOrbitHovering(true)}
+              onHoverEnd={() => setIsOrbitHovering(false)}
+            >
               <motion.circle
+                id={`curve${groupIndex}`}
+                key={groupIndex}
+                style={{ filter: "url(#glow)" }}
                 cx={group.orbit.centerX}
                 cy={group.orbit.centerY}
                 r={group.orbit.radius}
                 stroke="#B2CCE8"
-                strokeWidth="1"
+                strokeWidth="2"
                 fill="none"
               />
               {group.orbitIcons.map((icon, index) => (
@@ -51,7 +78,7 @@ export const TechStackOrbit = (props: TechStackOrbitProps) => {
                   size={icon.size}
                 />
               ))}
-            </g>
+            </motion.g>
           );
         })}
       </svg>

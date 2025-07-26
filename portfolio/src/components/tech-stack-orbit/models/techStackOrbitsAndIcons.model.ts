@@ -1,4 +1,5 @@
 export interface Orbit {
+    name:string;
     centerX: number;
     centerY: number;
     radius: number;

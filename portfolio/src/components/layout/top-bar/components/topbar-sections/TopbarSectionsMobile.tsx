@@ -32,10 +32,21 @@ useEffect(() => {
     <motion.div
       animate={{ y: isOpen ? 0 : -height }}
       transition={{ type: "tween", damping: 30 }}
-      className="fixed left-0 right-0 top-0 flex flex-col items-center justify-center bg-secondary gap-40 md:hidden lg:hidden h-screen font-satoshi"
+      className="fixed left-0 right-0 top-0 flex flex-col items-center justify-center bg-secondary gap-40 md:hidden lg:hidden h-screen font-satoshi z-40"
     >
       {topbarSectionItems.map((topbarSectionItem) => (
-        <motion.a animate={shouldAnimateSection?"visible":"hidden"} variants={itemVariants} transition={ {type: "spring",stiffness: 700,damping: 20,delay:topbarSectionItem.delay}} href={topbarSectionItem.href} className="text-4xl text-white">
+        <motion.a
+          animate={shouldAnimateSection ? "visible" : "hidden"}
+          variants={itemVariants}
+          transition={{
+            type: "spring",
+            stiffness: 700,
+            damping: 20,
+            delay: topbarSectionItem.delay,
+          }}
+          href={topbarSectionItem.href}
+          className="text-4xl text-white"
+        >
           {topbarSectionItem.label}
         </motion.a>
       ))}

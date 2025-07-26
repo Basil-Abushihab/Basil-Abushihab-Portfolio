@@ -30,6 +30,7 @@ export const prepareOrbitGroups = (props: PrepareOrbitGroupsProps):OrbitGroup[] 
     const orbitGroups: OrbitGroup[] = [
         {
             orbit: {
+                name:"Front End",
                 centerX: cx,
                 centerY: cy,
                 radius: radiis.frontEndOrbit,
@@ -71,6 +72,7 @@ export const prepareOrbitGroups = (props: PrepareOrbitGroupsProps):OrbitGroup[] 
         },
         {
             orbit: {
+                name:"Back End",
                 centerX: cx,
                 centerY: cy,
                 radius: radiis.backendOrbit,
@@ -104,6 +106,7 @@ export const prepareOrbitGroups = (props: PrepareOrbitGroupsProps):OrbitGroup[] 
         },
         {
             orbit: {
+                name:"Dev Ops",
                 centerX: cx,
                 centerY: cy,
                 radius: radiis.devopsOrbit,

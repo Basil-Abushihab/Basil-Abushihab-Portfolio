@@ -1,10 +1,9 @@
-import { Layout } from "@/components/layout/Layout";
+import { MainPage } from "@/main-page/MainPage";
 
 function App() {
   return (
     <>
-      <Layout>
-      </Layout>
+    <MainPage/>
     </>
   );
 }

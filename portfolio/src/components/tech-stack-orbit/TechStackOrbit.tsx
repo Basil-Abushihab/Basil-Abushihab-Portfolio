@@ -1,8 +1,8 @@
 import { OrbitingLogo } from "@/components/tech-stack-orbit/components/OrbittingLogo";
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { prepareOrbitGroups } from "@/components/tech-stack-orbit/utils/orbitGroupCalculations.util";
 import { cn } from "@/lib/utils";
-import { useState, type Ref } from "react";
+import { type Ref } from "react";
 
 export type TechStackOrbitProps = {
   width?: string;
@@ -13,7 +13,6 @@ export type TechStackOrbitProps = {
 
 export const TechStackOrbit = (props: TechStackOrbitProps) => {
   const { width = "300px", height = "300px", className, ref } = props;
-  const [isOrbitHovering, setIsOrbitHovering] = useState<boolean>(false);
   const w = parseInt(width.replace("px", ""));
   const h = parseInt(height.replace("px", ""));
   const orbitGroups = prepareOrbitGroups({ height: h, width: w });
@@ -30,10 +29,7 @@ export const TechStackOrbit = (props: TechStackOrbitProps) => {
       >
         {orbitGroups.map((group, groupIndex) => {
           return (
-            <motion.g
-              onHoverStart={() => setIsOrbitHovering(true)}
-              onHoverEnd={() => setIsOrbitHovering(false)}
-            >
+            <motion.g>
               <motion.circle
                 id={`curve${groupIndex}`}
                 key={groupIndex}

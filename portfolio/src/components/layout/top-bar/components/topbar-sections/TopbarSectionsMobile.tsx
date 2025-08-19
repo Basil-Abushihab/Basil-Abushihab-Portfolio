@@ -1,6 +1,6 @@
 import { topbarSectionItems } from "@/components/layout/top-bar/components/topbar-sections/models/topBarSection.model";
 import { useWindowDimensions } from "@/hooks/windowUtilityHooks";
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 type TopbarSectionsMobileProps = {

@@ -1,8 +1,9 @@
 import orangePlanet from "@/assets/timeline-assets/planets/orangePlanet.png";
 import orangeLogo from "@/content/timelineNodes/assets/OrangeLogo.svg";
 import basilAstronaut from "@/content/timelineNodes/assets/BasilAstronaut.png";
-import type { ComponentType } from "react";
 import { PopoverTechStackSection } from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/TechStackSection";
+import type { ComponentType } from "react";
+import type { Variants } from "motion/react";
 
 type BaseSectionProps = {
   sectionTitle: string;
@@ -11,7 +12,7 @@ type BaseSectionProps = {
 
 export type ExtraSection<P = {}> = BaseSectionProps & {
   component: ComponentType<P & BaseSectionProps>;
-  props: P; 
+  props: P;
 };
 
 type NodeContent = {
@@ -25,11 +26,18 @@ type TimelineNode = {
   nodeImg: string;
   nodeLabel: string;
   nodeContent: NodeContent;
+  nodeAnimationVariants: Variants;
 };
 
 export const timeLineNodes: TimelineNode[] = [
   {
     nodeImg: basilAstronaut,
+    nodeAnimationVariants: {
+      animate: {
+        y: [0, -2, 0],
+        transition: { duration: 1, repeat: Infinity, ease: "linear" },
+      },
+    },
     nodeLabel: "Me",
     nodeContent: {
       title: "Who am I?",
@@ -54,6 +62,12 @@ export const timeLineNodes: TimelineNode[] = [
   },
   {
     nodeImg: orangePlanet,
+    nodeAnimationVariants: {
+      animate: {
+        rotate: 360,
+        transition: { duration: 20, repeat: Infinity, ease: "linear" },
+      },
+    },
     nodeLabel: "Orange Coding Academy",
     nodeContent: {
       title: "Orange Coding Academy",

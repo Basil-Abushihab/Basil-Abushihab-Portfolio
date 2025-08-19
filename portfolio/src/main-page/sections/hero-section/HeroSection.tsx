@@ -3,7 +3,7 @@ import { TechStackOrbitSection } from "@/main-page/sections/hero-section/compone
 
 export const HeroSection = () => {
   return <section>
-    <div className="flex w-full items-center relative">
+    <div className="flex flex-col w-full items-center relative md:flex-row">
       <HeroSectionIntroduction/>
       <TechStackOrbitSection/>
     </div>

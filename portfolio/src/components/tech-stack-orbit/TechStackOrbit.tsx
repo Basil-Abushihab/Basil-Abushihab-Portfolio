@@ -29,7 +29,7 @@ export const TechStackOrbit = (props: TechStackOrbitProps) => {
       >
         {orbitGroups.map((group, groupIndex) => {
           return (
-            <motion.g>
+            <motion.g key={groupIndex}>
               <motion.circle
                 id={`curve${groupIndex}`}
                 key={groupIndex}

@@ -1,26 +1,5 @@
 import { useEffect, useState } from "react";
 
-const getWindowDimensions = () => {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height,
-  };
-};
-export const useWindowDimensions = () => {
-  const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions()
-  );
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions());
-    }
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-  return windowDimensions;
-};
-
 export function useWindowBreakpointValue<T>(values: { base: T; sm?: T; md?: T; lg?: T; xl?: T }): T {
   const [value, setValue] = useState<T>(values.base);
 

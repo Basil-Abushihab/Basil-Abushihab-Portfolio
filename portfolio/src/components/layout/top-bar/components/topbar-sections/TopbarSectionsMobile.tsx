@@ -1,5 +1,4 @@
 import { topbarSectionItems } from "@/components/layout/top-bar/components/topbar-sections/models/topBarSection.model";
-import { useWindowDimensions } from "@/hooks/windowUtilityHooks";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -7,47 +6,43 @@ type TopbarSectionsMobileProps = {
   isOpen?: boolean;
 };
 
-
-
 export const TopbarSectionsMobile = ({ isOpen = true }: TopbarSectionsMobileProps) => {
-const { height } = useWindowDimensions();
-const [shouldAnimateSection,setShouldAnimateSection] = useState(false);
-// Trigger animation only once and thats when the menu is opened
-useEffect(() => {
-  if (isOpen && !shouldAnimateSection) {
-    setShouldAnimateSection(true);
-  }
-}, [isOpen]);
+  const [shouldAnimateSection, setShouldAnimateSection] = useState(false);
 
- const itemVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-  },
-};
+  // Trigger item animation only once, on first open
+  useEffect(() => {
+    if (isOpen && !shouldAnimateSection) setShouldAnimateSection(true);
+  }, [isOpen, shouldAnimateSection]);
+
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.98 },
+    visible: { opacity: 1, y: 0, scale: 1 },
+  };
 
   return (
     <motion.div
-      animate={{ y: isOpen ? 0 : -height }}
-      transition={{ type: "tween", damping: 30 }}
-      className="fixed left-0 right-0 top-0 flex flex-col items-center justify-center bg-secondary gap-40 md:hidden lg:hidden h-screen font-satoshi z-40"
+      initial={{ y: "-100%" }}
+      animate={{ y: isOpen ? 0 : "-100%" }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+      className="fixed inset-x-0 top-0 z-40 flex h-[100dvh] flex-col items-center justify-center gap-40 bg-secondary font-satoshi md:hidden lg:hidden"
+      style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
-      {topbarSectionItems.map((topbarSectionItem) => (
+      {topbarSectionItems.map((item, index) => (
         <motion.a
+          key={item.href ?? index}
           animate={shouldAnimateSection ? "visible" : "hidden"}
           variants={itemVariants}
           transition={{
             type: "spring",
             stiffness: 700,
             damping: 20,
-            delay: topbarSectionItem.delay,
+            delay: item.delay,
           }}
-          href={topbarSectionItem.href}
+          href={item.href}
           className="text-4xl text-white"
         >
-          {topbarSectionItem.label}
+          {item.label}
         </motion.a>
       ))}
     </motion.div>

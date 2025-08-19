@@ -77,8 +77,8 @@ const [iconDelayMultiplier,setIconDelayMultiplier]=useState<number>(1)
 
         {/* Social Icons */}
         <div className="flex items-center gap-5 justify-center md:justify-start lg:justify-start">
-          {heroText.socialLinks.map((socialLink)=>
-          <a href={socialLink.href} target="_blank">
+          {heroText.socialLinks.map((socialLink,index)=>
+          <a href={socialLink.href} target="_blank" key={index}>
             <motion.img
               custom={socialLink.delay*iconDelayMultiplier}
               variants={socialIconVariant}

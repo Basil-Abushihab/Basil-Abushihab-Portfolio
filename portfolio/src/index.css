@@ -98,6 +98,7 @@ html{
 @theme{
   --color-main: #0E2148;
   --color-secondary:#34699A;
+  --color-icon:#213448;
   --font-satoshi:"Satoshi", sans-serif;
 }
 

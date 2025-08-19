@@ -17,7 +17,7 @@ export const topbarSectionItems: TopbarSectionItems[] = [
   },
   {
     href: "#join-me",
-    label: "Join My journey",
+    label: "Join My Journey",
     delay:0.65
   },
 ];

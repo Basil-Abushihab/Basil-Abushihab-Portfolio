@@ -1,7 +1,6 @@
-import { delay, motion, type Variants } from "framer-motion";
-import GitHubLogo from "@/assets/GitHubLogo.svg";
-import LinkedInLogo from "@/assets/LinkedInLogo.svg";
+import { motion, type Variants } from "framer-motion";
 import { useState } from "react";
+import { heroText } from "@/content/heroSectionContent";
 
   const iconSize = 50;
 
@@ -51,7 +50,7 @@ const [iconDelayMultiplier,setIconDelayMultiplier]=useState<number>(1)
         animate="visible"
         className="text-2xl md:text-4xl lg:text-5xl font-satoshi text-white"
       >
-        Hello<span className="text-secondary text-bold">,</span> I'm Basil Abushihab
+        {heroText.title.greeting}<span className="text-secondary text-bold">,</span> {heroText.title.name}
       </motion.h1>
 
       {/* Subtitle */}
@@ -61,8 +60,8 @@ const [iconDelayMultiplier,setIconDelayMultiplier]=useState<number>(1)
         animate="visible"
         className="text-lg md:text-xl lg:text-2xl font-satoshi text-white text-center md:text-left lg:text-left"
       >
-        A Full Stack <span className="text-secondary font-bold">Developer</span>{" "}
-        who enjoys creating beautiful and functional web applications.
+        {heroText.subtitle.part1} <span className="text-secondary font-bold">{heroText.subtitle.highlight}</span>{" "}
+        {heroText.subtitle.part2}
       </motion.h2>
 
       {/* Connect Section */}
@@ -73,39 +72,27 @@ const [iconDelayMultiplier,setIconDelayMultiplier]=useState<number>(1)
           animate="visible"
           className="text-lg md:text-xl lg:text-2xl font-satoshi text-white text-center md:text-left lg:text-left"
         >
-          Let's <span className="text-secondary font-bold">connect</span> and build something amazing together!
+          {heroText.connect.part1} <span className="text-secondary font-bold">{heroText.connect.highlight}</span> {heroText.connect.part2}
         </motion.h3>
 
         {/* Social Icons */}
         <div className="flex items-center gap-5 justify-center md:justify-start lg:justify-start">
-          <a href="https://github.com/Basil-Abushihab" target="_blank">
+          {heroText.socialLinks.map((socialLink)=>
+          <a href={socialLink.href} target="_blank">
             <motion.img
-              custom={3.4*iconDelayMultiplier}
+              custom={socialLink.delay*iconDelayMultiplier}
               variants={socialIconVariant}
               initial="hidden"
               animate="visible"
               whileHover="hover"
-              src={GitHubLogo}
+              src={socialLink.imgSrc}
               height={iconSize}
               width={iconSize}
               onAnimationComplete={()=>setIconDelayMultiplier(0)}
-              alt="GitHub"
+              alt={socialLink.label}
             />
           </a>
-          <a href="https://www.linkedin.com/in/basil-abushihab" target="_blank">
-            <motion.img
-              custom={3.6*iconDelayMultiplier}
-              variants={socialIconVariant}
-              initial="hidden"
-              animate="visible"
-              whileHover="hover"
-              src={LinkedInLogo}
-              height={iconSize}
-              width={iconSize}
-              onAnimationComplete={()=>setIconDelayMultiplier(0)}
-              alt="LinkedIn"
-            />
-          </a>
+          )}
         </div>
       </div>
     </div>

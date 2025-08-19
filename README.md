@@ -55,9 +55,8 @@ and every project — a **new planet discovered in the galaxy of development**.
 ## 🌠 Theme  
 
 The **theme of my portfolio** is not just design — it’s a **space odyssey**:  
-- 🌌 Each **section** = a **galaxy to explore**  
-- 🕳 Each **challenge** = a **black hole to escape**  
-- 🌟 Each **discovery** = a **new star guiding my path**  
+- 🪐 Each **section** = a **planet to explore**  
+- 🛰️ Each **project** = a **mission to log**    
 - 🚀 My progress = flying from planet to planet, unlocking new worlds  
 
 It’s not just a portfolio — it’s a **cosmic narrative of my journey as a developer**.  

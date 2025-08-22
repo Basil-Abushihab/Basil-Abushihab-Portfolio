@@ -1,7 +1,7 @@
 import type { NodeContent } from "@/content/timelineNodes/TimelineNodes";
 import { motion } from "framer-motion";
 export const TimelinePopupContent = (props: NodeContent) => {
-  const { description, title, extraSections, nodeLogo } = props;
+  const { description, title, nodeLogo } = props;
   return (
     <motion.div className="flex flex-col w-full gap-4 bg-white rounded-3xl p-10 text-black font-satoshi">
       <img src={nodeLogo} className="w-[50px] h-[50px]" />

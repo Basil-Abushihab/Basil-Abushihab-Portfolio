@@ -1,9 +1,13 @@
 import orangePlanet from "@/assets/timeline-assets/planets/orangePlanet.png";
-import orangeLogo from "@/content/timelineNodes/assets/OrangeLogo.svg";
-import basilAstronaut from "@/content/timelineNodes/assets/BasilAstronaut.png";
+import firstMissionPlanet from "@/assets/timeline-assets/planets/FirstMissionPlanet.png";
+import orangeLogo from "@/assets/timeline-assets/OrangeLogo.svg";
+import basilAstronaut from "@/assets/timeline-assets/BasilAstronaut.png";
+import projectsDebrief from "@/assets/timeline-assets/projectsDebriefSat.png";
 import { PopoverTechStackSection } from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/TechStackSection";
 import type { ComponentType } from "react";
 import type { Variants } from "motion/react";
+
+//@TODO: Transform the content to be saved on the cloud using firebase for better scalability and easy access for updates.
 
 type BaseSectionProps = {
   sectionTitle: string;
@@ -15,18 +19,21 @@ export type ExtraSection<P = {}> = BaseSectionProps & {
   props: P;
 };
 
-type NodeContent = {
-  nodeLogo: string;
+export type NodeContent = {
   title: string;
   description: { [key: string]: string } | string;
+  nodeLogo?: string;
   extraSections?: ExtraSection[];
 };
 
-type TimelineNode = {
+export type TimelineNode = {
   nodeImg: string;
   nodeLabel: string;
   nodeContent: NodeContent;
   nodeAnimationVariants: Variants;
+  isLastNode: boolean;
+  isOpen: boolean;
+  isVisited: boolean;
 };
 
 export const timeLineNodes: TimelineNode[] = [
@@ -49,7 +56,7 @@ export const timeLineNodes: TimelineNode[] = [
         thirdParagraph:
           "I’m passionate about what I do—whether it’s coding or my other hobbies—and I’m always striving to improve. I don’t stop until I reach my goals and see them through.",
       },
-      nodeLogo: orangeLogo,
+      nodeLogo: basilAstronaut,
       extraSections: [
         {
           sectionTitle: "My Tech Stack",
@@ -59,6 +66,9 @@ export const timeLineNodes: TimelineNode[] = [
         },
       ],
     },
+    isLastNode: false,
+    isOpen: true,
+    isVisited: false,
   },
   {
     nodeImg: orangePlanet,
@@ -89,5 +99,50 @@ export const timeLineNodes: TimelineNode[] = [
         },
       ],
     },
+    isLastNode: false,
+    isOpen: false,
+    isVisited: false,
+  },
+  {
+    nodeAnimationVariants: {
+      animate: {
+        rotate: 360,
+        transition: { duration: 20, repeat: Infinity, ease: "linear" },
+      },
+    },
+    nodeLabel: "My First Mission",
+    nodeImg: firstMissionPlanet,
+    nodeContent: {
+      title: "My First Mission",
+      description: {
+        firstParagraph: "",
+        secondParagraph: "",
+        thirdParagraph: "",
+      },
+    },
+    isLastNode: false,
+    isOpen: false,
+    isVisited: false,
+  },
+  {
+    nodeAnimationVariants: {
+      animate: {
+        y: [0, -2, 0],
+        transition: { duration: 1, repeat: Infinity, ease: "linear" },
+      },
+    },
+    nodeLabel: "Projects Debrief",
+    nodeImg: projectsDebrief,
+    nodeContent: {
+      title: "Projects Debrief",
+      description: {
+        firstParagraph: "",
+        secondParagraph: "",
+        thirdParagraph: "",
+      },
+    },
+    isLastNode: true,
+    isOpen: false,
+    isVisited: false,
   },
 ];

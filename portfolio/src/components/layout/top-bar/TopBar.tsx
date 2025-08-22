@@ -13,7 +13,7 @@ export const Topbar = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.4 }}
     >
-      <header className="flex relative px-5 w-full h-24 items-center justify-between md:px-10 lg:px-20 md:fixed lg:fixed top-0 text-white">
+      <header className="flex relative px-5 w-full h-24 items-center justify-between md:px-10 lg:px-20 top-0 text-white">
         <a href="#">
           <TopbarLogo />
         </a>

@@ -1,10 +1,12 @@
 import { Timeline } from "@/main-page/sections/my-journey/components/timeline/Timeline";
-import { timeLineNodes } from "@/content/timelineNodes/timelineNodes";
 import type { TargetAndTransition } from "motion/react";
+import {  useTimeLineNodes } from "@/context/timelineNodesContext";
+
 export const MyJourney = () => {
+  const {timelineNodes}=useTimeLineNodes();
   return (
     <div className="flex flex-col items-center justify-center w-full mt-60 md:mt-40">
-      {timeLineNodes.map((node, index) => (
+      {timelineNodes.map((node, index) => (
         <Timeline
           key={index}
           nodeAnimationVariant={
@@ -12,6 +14,10 @@ export const MyJourney = () => {
           }
           nodeSrc={node.nodeImg}
           nodeLabel={node.nodeLabel}
+          isLastNode={node.isLastNode}
+          isOpen={node.isOpen}
+          isVisited={node.isVisited}
+          nodeContent={node.nodeContent}
         />
       ))}
     </div>

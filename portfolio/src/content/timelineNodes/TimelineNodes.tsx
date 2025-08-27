@@ -5,7 +5,6 @@ import basilAstronaut from "@/assets/timeline-assets/BasilAstronaut.png";
 import projectsDebrief from "@/assets/timeline-assets/projectsDebriefSat.png";
 import { PopoverTechStackSection } from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/TechStackSection";
 import type { ComponentType } from "react";
-import type { Variants } from "motion/react";
 import { AnimationVariants } from "@/utils/animation-utilities/animationVariants";
 
 //@TODO: Transform the content to be saved on the cloud using firebase for better scalability and easy access for updates.

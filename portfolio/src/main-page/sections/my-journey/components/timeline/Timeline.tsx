@@ -17,7 +17,7 @@ type TimelineProps = {
 }
 
 export const Timeline = (props:TimelineProps) => {
-  const { nodeSrc, nodeLabel,nodeAnimationVariant,isLastNode,isOpen,nodeContent,nodeIndex } = props;
+  const { nodeSrc, nodeLabel,nodeAnimationVariant,isLastNode,nodeContent,nodeIndex } = props;
   return (
     <>
       <div className="relative flex items-center flex-col">

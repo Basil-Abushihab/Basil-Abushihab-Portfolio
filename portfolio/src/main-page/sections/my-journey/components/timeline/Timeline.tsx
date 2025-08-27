@@ -13,14 +13,15 @@ type TimelineProps = {
   isOpen:boolean;
   isVisited:boolean;
   nodeContent:TimelineNodeType["nodeContent"];
+  nodeIndex:number;
 }
 
 export const Timeline = (props:TimelineProps) => {
-  const { nodeSrc, nodeLabel,nodeAnimationVariant,isLastNode,isOpen,nodeContent } = props;
+  const { nodeSrc, nodeLabel,nodeAnimationVariant,isLastNode,isOpen,nodeContent,nodeIndex } = props;
   return (
     <>
-      <div className="flex items-center flex-col">
-        <Popover open={isOpen}>
+      <div className="relative flex items-center flex-col">
+        <Popover open={true}>
           <PopoverTrigger>
           <TimelineNode
             imgSrc={nodeSrc}
@@ -28,7 +29,7 @@ export const Timeline = (props:TimelineProps) => {
             nodeAnimationVariant={nodeAnimationVariant as TargetAndTransition}
           />
           </PopoverTrigger>
-          <TimelinePopup {...nodeContent}/>
+          <TimelinePopup {...nodeContent} nodeIndex={nodeIndex}/>
         </Popover>
         {isLastNode ? null : <TimelineSVG />}
       </div>

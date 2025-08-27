@@ -1,18 +1,18 @@
 import RocketImg from "@/assets/timeline-assets/Rocket.svg";
 import { cn } from "@/lib/utils";
+import { Debris } from "@/main-page/sections/my-journey/components/rocket/Debris";
 import { motion } from "framer-motion";
-import { useRef } from "react";
 
 export type RocketParams = {
-  className: string;
   width: string;
+  className?: string;
   height: string;
+  ref?: React.Ref<SVGSVGElement>;
 };
 
 
-export const Rocket = (props: RocketParams) => {
-  const { className, height, width } = props;
-  const rocketRef=useRef<SVGSVGElement>(null);
+const RocketComponent = (props: RocketParams) => {
+  const { className, height, width,ref } = props;
   const w = parseInt(width.replace("px", ""));
   const h = parseInt(height.replace("px", ""));
 
@@ -22,13 +22,16 @@ export const Rocket = (props: RocketParams) => {
       <svg
         width={w}
         height={h}
-        ref={rocketRef}
+        ref={ref}
         viewBox={`0 0 ${w} ${h}`}
         xmlns="http://www.w3.org/2000/svg"
         className={cn("overflow-visible bg-transparent", className)}
       >
+        <Debris height={h} width={w} offsetX={-10} offsetY={40}/>
         <motion.image href={RocketImg} width={w} height={h}/>
       </svg>
     </>
   );
 };
+
+export const Rocket = motion.create(RocketComponent);

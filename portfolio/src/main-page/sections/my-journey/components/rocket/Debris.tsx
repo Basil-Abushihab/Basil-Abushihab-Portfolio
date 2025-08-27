@@ -53,6 +53,7 @@ export const Debris = ({ width, height, offsetX, offsetY }: DebrisParams) => {
               animate={{
                 y: debrisItem.yAxisKeyFrames,
                 scale: [1, 0.5],
+                opacity: [1, 0.2]
               }}
               transition={{
                 duration: debrisItem.duration,

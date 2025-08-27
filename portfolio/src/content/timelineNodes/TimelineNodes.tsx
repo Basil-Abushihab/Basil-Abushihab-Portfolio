@@ -6,6 +6,7 @@ import projectsDebrief from "@/assets/timeline-assets/projectsDebriefSat.png";
 import { PopoverTechStackSection } from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/TechStackSection";
 import type { ComponentType } from "react";
 import type { Variants } from "motion/react";
+import { AnimationVariants } from "@/utils/animation-utilities/animationVariants";
 
 //@TODO: Transform the content to be saved on the cloud using firebase for better scalability and easy access for updates.
 
@@ -30,7 +31,7 @@ export type TimelineNode = {
   nodeImg: string;
   nodeLabel: string;
   nodeContent: NodeContent;
-  nodeAnimationVariants: Variants;
+  nodeAnimationVariants:AnimationVariants;
   isLastNode: boolean;
   isOpen: boolean;
   isVisited: boolean;
@@ -39,12 +40,7 @@ export type TimelineNode = {
 export const timeLineNodes: TimelineNode[] = [
   {
     nodeImg: basilAstronaut,
-    nodeAnimationVariants: {
-      animate: {
-        y: [0, -2, 0],
-        transition: { duration: 1, repeat: Infinity, ease: "linear" },
-      },
-    },
+    nodeAnimationVariants:AnimationVariants.MoveUpAndDown,
     nodeLabel: "Me",
     nodeContent: {
       title: "Who am I?",
@@ -72,12 +68,7 @@ export const timeLineNodes: TimelineNode[] = [
   },
   {
     nodeImg: orangePlanet,
-    nodeAnimationVariants: {
-      animate: {
-        rotate: 360,
-        transition: { duration: 20, repeat: Infinity, ease: "linear" },
-      },
-    },
+    nodeAnimationVariants:AnimationVariants.Spin,
     nodeLabel: "Orange Coding Academy",
     nodeContent: {
       title: "Orange Coding Academy",
@@ -104,12 +95,7 @@ export const timeLineNodes: TimelineNode[] = [
     isVisited: false,
   },
   {
-    nodeAnimationVariants: {
-      animate: {
-        rotate: 360,
-        transition: { duration: 20, repeat: Infinity, ease: "linear" },
-      },
-    },
+    nodeAnimationVariants:AnimationVariants.Spin,
     nodeLabel: "My First Mission",
     nodeImg: firstMissionPlanet,
     nodeContent: {
@@ -125,12 +111,7 @@ export const timeLineNodes: TimelineNode[] = [
     isVisited: false,
   },
   {
-    nodeAnimationVariants: {
-      animate: {
-        y: [0, -2, 0],
-        transition: { duration: 1, repeat: Infinity, ease: "linear" },
-      },
-    },
+    nodeAnimationVariants:AnimationVariants.MoveUpAndDown,
     nodeLabel: "Projects Debrief",
     nodeImg: projectsDebrief,
     nodeContent: {

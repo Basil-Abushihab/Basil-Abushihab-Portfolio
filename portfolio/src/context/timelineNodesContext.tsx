@@ -6,7 +6,13 @@ export type TimeLineNodesContextType = {
     getIsTimeLineNodeOpen: (index:number) => boolean;
     setIsTimeLineNodeOpen: (index:number,isOpen:boolean) => void;
     setIsTimeLineNodeVisited: (index:number,isVisited:boolean) => void;
-    timelineNodes:TimelineNode[]
+    setIsTripFinished: (isFinished:boolean) => void;
+    setIsRocketMoving: (isMoving:boolean) => void;
+    setNextVisitedNode: () => void;
+    visitedNodeNumber: number;
+    timelineNodes:TimelineNode[];
+    isTripFinished: boolean;
+    isRocketMoving:boolean;
 }
 
 export const TimeLineNodesContext = createContext<TimeLineNodesContextType | undefined>(undefined);
@@ -20,6 +26,9 @@ export const TimelineNodesProvider = ({
   children,
 }: TimelineNodesProviderProps) => {
   const [timelineNodes,setTimelineNodes] = useState<TimelineNode[]>(timeLineNodes.map((node) => node));
+  const [isTripFinished,setIsTripFinished] = useState<boolean>(false);
+  const [visitedNodeNumber,setVisitedNodeNumber] = useState<number>(0);
+  const [isRocketMoving,setIsRocketMoving]=useState<boolean>(false);
 
   const getIsTimeLineNodeVisited = (index:number) => {
     return timelineNodes[index].isVisited;
@@ -41,8 +50,27 @@ export const TimelineNodesProvider = ({
     setTimelineNodes(updatedNodes);
   };
 
+  const setNextVisitedNode = () => {
+    if (visitedNodeNumber >= timelineNodes.length) return;
+    setVisitedNodeNumber((prev) => prev + 1);
+  }
+
   return (
-    <TimeLineNodesContext.Provider value={{getIsTimeLineNodeOpen,setIsTimeLineNodeOpen,getIsTimeLineNodeVisited,setIsTimeLineNodeVisited,timelineNodes}}>
+    <TimeLineNodesContext.Provider
+      value={{
+        getIsTimeLineNodeOpen,
+        setIsTimeLineNodeOpen,
+        getIsTimeLineNodeVisited,
+        setIsTimeLineNodeVisited,
+        setNextVisitedNode,
+        setIsRocketMoving,
+        setIsTripFinished,
+        timelineNodes,
+        visitedNodeNumber,
+        isTripFinished,
+        isRocketMoving
+      }}
+    >
       {children}
     </TimeLineNodesContext.Provider>
   );

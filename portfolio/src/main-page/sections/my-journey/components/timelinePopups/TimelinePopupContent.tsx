@@ -1,4 +1,4 @@
-import { useTimeLineNodes } from "@/context/timelineNodesContext";
+import { useTimeLineNodes } from "@/context/TimelineNodesContext";
 import { TimelineTripControlSection } from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/TimelineTripControlSection";
 import type { TimeLinePopupProps } from "@/main-page/sections/my-journey/components/timelinePopups/TimelinePopup";
 import { returnAnimationVariant } from "@/utils/animation-utilities/animationUtilityFunctions";

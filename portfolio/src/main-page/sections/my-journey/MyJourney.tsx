@@ -3,15 +3,18 @@ import { Rocket } from "@/main-page/sections/my-journey/components/rocket/Rocket
 import { returnAnimationVariant } from "@/utils/animation-utilities/animationUtilityFunctions";
 import { useRocketJourneyEffects } from "@/main-page/sections/my-journey/hooks/useRocketJourneyEffects";
 import { useRef } from "react";
-import { useTimeLineNodes } from "@/context/timelineNodesContext";
+import { useTimeLineNodes } from "@/context/TimelineNodesContext";
+import { setRocketMoving } from "@/context/actions";
+import { cn } from "@/lib/utils";
+import clsx from "clsx";
 
 export const MyJourney = () => {
   const timelineContainerRef = useRef<(HTMLDivElement | null)[]>([]);
   const { rocketOffset } = useRocketJourneyEffects(timelineContainerRef);
-  const { timelineNodes,setIsRocketMoving} = useTimeLineNodes();
+  const { timelineNodes,isTripStarted,dispatch} = useTimeLineNodes();
 
   return (
-    <div className="relative flex flex-col items-center justify-center w-full mt-60 md:mt-40">
+    <div className={cn("flex flex-col items-center justify-center w-full mt-60 md:mt-70",clsx({"hidden":!isTripStarted,"relative":isTripStarted}))}>
       <Rocket
         height="80px"
         width="80px"
@@ -24,10 +27,10 @@ export const MyJourney = () => {
           damping: 18,
         }}
         onAnimationStart={() => {
-          setIsRocketMoving(true);
+          dispatch(setRocketMoving({isMoving:true}));
         }}
         onAnimationComplete={() => {
-          setIsRocketMoving(false);
+          dispatch(setRocketMoving({isMoving:false}))
         }}
       />
       {timelineNodes.map((node, index) => (

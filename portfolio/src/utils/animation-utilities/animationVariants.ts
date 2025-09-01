@@ -5,6 +5,7 @@ export enum AnimationVariants {
   MoveUpAndDown = "moveUpAndDown",
   Popup = "popup",
   Popout = "popout",
+  Bounce = "bounce",
 }
 
 export const animationVariants: Variants = {
@@ -25,6 +26,10 @@ export const animationVariants: Variants = {
     scale: [1, 0],
     opacity: [1, 0],
     transition: { duration: 1,type:"spring",stiffness:100,damping:20 },
+  },
+  [AnimationVariants.Bounce]: {
+    y: [0, -10, 0],
+    transition: { duration: 2, repeat: Infinity, ease: "easeInOut" },
   },
 
 };

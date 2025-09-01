@@ -1,8 +1,9 @@
-import { useTimeLineNodes } from "@/context/timelineNodesContext";
+import { setNodeOpen } from "@/context/actions";
+import { useTimeLineNodes } from "@/context/TimelineNodesContext";
 import { useEffect, useLayoutEffect, useState } from "react";
 
 export const useRocketJourneyEffects = ( myJourneyContainerRef: React.RefObject<(HTMLDivElement | null)[]>) => {
-  const { timelineNodes, visitedNodeNumber,setIsTimeLineNodeOpen,isRocketMoving } = useTimeLineNodes();
+  const { timelineNodes, visitedNodeNumber,isRocketMoving,dispatch } = useTimeLineNodes();
   const [rocketOffset, setRocketOffset] = useState(0);
 
   useLayoutEffect(() => {
@@ -21,7 +22,7 @@ export const useRocketJourneyEffects = ( myJourneyContainerRef: React.RefObject<
 
   useEffect(()=>{
     if(isRocketMoving)return;
-   setIsTimeLineNodeOpen(visitedNodeNumber,!isRocketMoving);
+   dispatch(setNodeOpen({index:visitedNodeNumber,isOpen:!isRocketMoving}));
   },[isRocketMoving]);
 
   return { rocketOffset };

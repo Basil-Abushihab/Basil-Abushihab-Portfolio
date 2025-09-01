@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button"
-import { useTimeLineNodes } from "@/context/timelineNodesContext";
+import { nextNode, setNodeOpen } from "@/context/actions";
+import { useTimeLineNodes } from "@/context/TimelineNodesContext";
 
 export const TimelineTripControlSection = () => {
-    const {setNextVisitedNode,visitedNodeNumber,setIsTimeLineNodeOpen}=useTimeLineNodes();
+    const {visitedNodeNumber,dispatch}=useTimeLineNodes();
     const handleNextClick=()=>{
-        setNextVisitedNode();
-        setIsTimeLineNodeOpen(visitedNodeNumber,false);
+        dispatch(nextNode());
+        dispatch(setNodeOpen({index:visitedNodeNumber,isOpen:false}));
         
     }
     return (<Button onClick={handleNextClick}>Next</Button>)

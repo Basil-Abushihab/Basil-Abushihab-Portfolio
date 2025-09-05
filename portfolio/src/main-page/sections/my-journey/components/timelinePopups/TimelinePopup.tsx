@@ -20,9 +20,10 @@ export type TimeLinePopupProps=NodeContent & {nodeIndex:number};
 export const TimelinePopup = (props:TimeLinePopupProps) => {
 const popoverAlignment= useWindowBreakpointValue<PopoverContentAlignment>({base:PopoverContentAlignment.Center,lg:PopoverContentAlignment.Start});
 const popoverSide= useWindowBreakpointValue<PopoverContentSide>({base:PopoverContentSide.Bottom,lg:PopoverContentSide.Left});
+const popoverSideOffset=useWindowBreakpointValue<number>({base:20,lg:30});
 
   return (
-    <PopoverContent align={popoverAlignment} side={popoverSide} sideOffset={30} avoidCollisions={false} className="w-[350px] md:w-[500px] lg:w-[600px]">
+    <PopoverContent align={popoverAlignment} side={popoverSide} sideOffset={popoverSideOffset} avoidCollisions={false} className="w-[350px] md:w-[500px] lg:w-[600px]">
         <TimelinePopupContent {...props} />
     </PopoverContent>
   );

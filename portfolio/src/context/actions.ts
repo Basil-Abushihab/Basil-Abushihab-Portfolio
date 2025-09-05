@@ -5,7 +5,8 @@ export enum ActionType {
   NEXT_NODE = "NEXT_NODE",
   SET_TRIP_STARTED = "SET_TRIP_STARTED",
   SET_ROCKET_MOVING = "SET_ROCKET_MOVING",
-  SET_TRIP_ENDED = "SET_TRIP_ENDED"
+  SET_TRIP_ENDED = "SET_TRIP_ENDED",
+  SET_WINDOW_POSITION = "SET_WINDOW_POSITION"
 }
 
 type ActionPayloads = {
@@ -15,6 +16,7 @@ type ActionPayloads = {
   [ActionType.SET_TRIP_STARTED]: { isStarted: boolean };
   [ActionType.SET_ROCKET_MOVING]: { isMoving: boolean };
   [ActionType.SET_TRIP_ENDED]:{isEnded:boolean};
+  [ActionType.SET_WINDOW_POSITION]:{windowPositionY:number,windowPositionX:number}
 };
 
 export type Action = {
@@ -49,5 +51,10 @@ export const setRocketMoving = (payload:ActionPayloads[ActionType.SET_ROCKET_MOV
 
 export const setTripEnded = (payload:ActionPayloads[ActionType.SET_TRIP_ENDED]): Action => ({
   type:ActionType.SET_TRIP_ENDED,
+  payload
+})
+
+export const setWindowPosition=(payload:ActionPayloads[ActionType.SET_WINDOW_POSITION]):Action=>({
+  type:ActionType.SET_WINDOW_POSITION,
   payload
 })

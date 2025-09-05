@@ -1,29 +1,18 @@
 import { HeroSectionIntroduction } from "@/main-page/sections/hero-section/components/hero-section-introduction/HeroSectionIntroduction";
 import { TechStackOrbitSection } from "@/main-page/sections/hero-section/components/hero-section-tech-stack-orbit/TechStackOrbitSection";
-import { returnAnimationVariant } from "@/utils/animation-utilities/animationUtilityFunctions";
-import { AnimationVariants } from "@/utils/animation-utilities/animationVariants";
-import { useTimeLineNodes } from "@/context/TimelineNodesContext";
-import { setTripStarted } from "@/context/actions";
-import {motion} from "framer-motion";
-import arrowDownImage from "@/assets/ArrowDown.png"
+import { ScrollingButton } from "@/main-page/sections/hero-section/components/ScrollingCallToActionButton";
 import clsx from "clsx";
-import { useRef } from "react";
-export const HeroSection = () => {
-  const {dispatch,isTripStarted} = useTimeLineNodes();
-  const callToActionAnimationVariant=returnAnimationVariant(AnimationVariants.Bounce);
-  const heroRef=useRef<HTMLElement | null>(null);
+import type { Variants } from "motion/react";
+import {useRef, useState } from "react";
 
-  const scrollDownOnClick = () => {
-    dispatch(setTripStarted({isStarted:true}));
-    if (heroRef.current) {
-      setTimeout(() => {
-        window.scrollTo({
-          top: heroRef.current?.offsetHeight ?? 0,
-          behavior: "smooth",
-        });
-      }, 50);
-    }
+const ScrollingButtonVariants:Variants = {
+    hidden: { y: 20, opacity: 0, },
+    visible: { y: 0, opacity: 1,transition:{ type: "tween", delay: 3.5, duration: 1 } },
   };
+
+export const HeroSection = () => {
+  const heroRef=useRef<HTMLElement | null>(null);
+  const [isVisible,setIsVisible]=useState<boolean>(false);
 
   return (
     <section
@@ -34,19 +23,17 @@ export const HeroSection = () => {
         <HeroSectionIntroduction />
         <TechStackOrbitSection />
       </div>
-      <button
-        onClick={scrollDownOnClick}
-      >
-        <motion.img
-          animate={callToActionAnimationVariant}
-          src={arrowDownImage}
-          alt="ArrowDown"
-          className={clsx("w-10 cursor-pointer", {
-            hidden: isTripStarted,
-            block: !isTripStarted,
-          })}
-        />
-      </button>
+      <ScrollingButton
+        className={clsx({
+          "cursor-pointer": isVisible,
+          "cursor-auto": !isVisible,
+        })}
+        isVisible={isVisible}
+        initial={"hidden"}
+        animate={"visible"}
+        variants={ScrollingButtonVariants}
+        onAnimationComplete={()=>setIsVisible(true)}
+      />
     </section>
   );
 };

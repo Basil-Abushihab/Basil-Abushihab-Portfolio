@@ -22,9 +22,9 @@ export const TimelineNodesProvider = ({children}: TimelineNodesProviderProps) =>
 };
 
 const useTimeLineNodesEffect=(ctx: TimeLineNodesContextType)=>{
-  const {isTripFinished}=ctx
+  const {isTripFinished,isTripStarted}=ctx
   useEffect(()=>{
-   if(!isTripFinished){
+   if(!isTripFinished && isTripStarted){
     document.body.style.overflow="hidden";
    }
    else{
@@ -34,7 +34,7 @@ const useTimeLineNodesEffect=(ctx: TimeLineNodesContextType)=>{
    return ()=>{
     document.body.style.overflow="";
    }
-  },[isTripFinished])
+  },[isTripFinished,isTripStarted])
 }
 
 export const useTimeLineNodes = () => {

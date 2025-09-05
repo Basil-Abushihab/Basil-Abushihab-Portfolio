@@ -6,7 +6,8 @@ type State = {
   visitedNodeNumber: number;
   isTripStarted: boolean;
   isRocketMoving: boolean;
-  isTripFinished:boolean
+  isTripFinished:boolean;
+  windowPosition?:{windowPositionY:number,windowPositionX:number};
 };
 
 export const initialState: State = {
@@ -14,7 +15,7 @@ export const initialState: State = {
   visitedNodeNumber: 0,
   isRocketMoving: false,
   isTripStarted: false,
-  isTripFinished:false
+  isTripFinished:false,
 };
 
 export type TimeLineNodesContextType = State & {
@@ -37,9 +38,11 @@ const Reducer = (state: State, action: Action): State => {
     }
     case ActionType.NEXT_NODE: {
       const next = state.visitedNodeNumber + 1;
+      const isTripFinished=next >= state.timelineNodes.length
       return {
         ...state,
         visitedNodeNumber: next,
+        isTripFinished
       };
     }
     case ActionType.SET_TRIP_STARTED:{
@@ -53,6 +56,9 @@ const Reducer = (state: State, action: Action): State => {
     case ActionType.SET_TRIP_ENDED:{
       const {isEnded}=action.payload;
       return {...state,isTripFinished:isEnded};
+    }
+    case ActionType.SET_WINDOW_POSITION:{
+       return {...state,windowPosition:action.payload}
     }
     default:
       return state;

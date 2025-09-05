@@ -20,16 +20,15 @@ export const animationVariants: Variants = {
   [AnimationVariants.Popup]: {
     scale: [0, 1],
     opacity: [0, 1],
-    transition: { duration: 1,type:"spring",stiffness:100,damping:20 },
+    transition: { duration: 1, type: "spring", stiffness: 100, damping: 20 },
   },
   [AnimationVariants.Popout]: {
     scale: [1, 0],
     opacity: [1, 0],
-    transition: { duration: 1,type:"spring",stiffness:100,damping:20 },
+    transition: { duration: 1, type: "spring", stiffness: 100, damping: 20 },
   },
   [AnimationVariants.Bounce]: {
     y: [0, -10, 0],
     transition: { duration: 2, repeat: Infinity, ease: "easeInOut" },
   },
-
 };

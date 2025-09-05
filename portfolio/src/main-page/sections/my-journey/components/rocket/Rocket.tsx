@@ -5,18 +5,19 @@ import { motion } from "framer-motion";
 
 export type RocketParams = {
   width: string;
-  className?: string;
   height: string;
+  className?: string;
+  debrisOffsetX?:number;
+  debrisOffsetY?:number;
   ref?: React.Ref<SVGSVGElement>;
 };
 
 
 const RocketComponent = (props: RocketParams) => {
-  const { className, height, width,ref } = props;
+  const { className, height, width,ref,debrisOffsetX,debrisOffsetY } = props;
   const w = parseInt(width.replace("px", ""));
   const h = parseInt(height.replace("px", ""));
 
-  
   return (
     <>
       <svg
@@ -27,7 +28,7 @@ const RocketComponent = (props: RocketParams) => {
         xmlns="http://www.w3.org/2000/svg"
         className={cn("overflow-visible bg-transparent", className)}
       >
-        <Debris height={h} width={w} offsetX={-10} offsetY={40}/>
+        <Debris height={h} width={w} offsetX={debrisOffsetX??0} offsetY={debrisOffsetY??0}/>
         <motion.image href={RocketImg} width={w} height={h}/>
       </svg>
     </>

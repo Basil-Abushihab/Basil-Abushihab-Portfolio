@@ -102,7 +102,16 @@ html{
   --font-satoshi:"Satoshi", sans-serif;
 }
 
+@layer utilities {
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
 
+      .no-scrollbar {
+        -ms-overflow-style: none;  
+        scrollbar-width: none; 
+      }
+    }
 
 .dark {
   --background: oklch(0.145 0 0);

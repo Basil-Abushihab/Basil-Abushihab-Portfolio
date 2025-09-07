@@ -1,17 +1,29 @@
-type PopoverArticleSectionProps = {
-  nodeLogo: string;
-  title: string;
+import type { BaseSectionProps } from "@/content/timelineNodes/TimelineNodes";
+import lodash from "lodash";
+export type Dates={
+  max:number | string;
+  min:number | string;
+}
+
+export type PopoverArticleSectionProps = {
+  nodeLogo?: string;
+  dates?:Dates
   description: string[];
 };
 
-export const PopoverArticleSection = (props: PopoverArticleSectionProps) => {
-  const { description, nodeLogo, title } = props;
+export const PopoverArticleSection = (props: PopoverArticleSectionProps & BaseSectionProps) => {
+  const { description, nodeLogo, sectionTitle,dates } = props;
 
   return (
     <div className="flex flex-col gap-4 w-full">
       <div className="flex flex-row items-end gap-4">
-        <img src={nodeLogo} className="w-[50px] h-[50px]" alt={title} />
-        <h3 className="text-lg font-bold mb-2">{title}</h3>
+        {!lodash.isUndefined(nodeLogo) &&<img src={nodeLogo} className="w-[60px] h-[60px]" alt={sectionTitle} />}
+        <div className="flex flex-col">
+        <h3 className="text-lg font-bold mb-2">{sectionTitle}</h3>
+        {!lodash.isUndefined(dates) && (
+          <h5 className="text-sm mb-2 text-gray-600">{dates.min} - {dates.max}</h5>
+        )}
+        </div>
       </div>
 
       {description.map((desc, index) => (

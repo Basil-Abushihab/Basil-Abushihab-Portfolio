@@ -1,7 +1,6 @@
 
 export enum ActionType {
   SET_NODE_OPEN = "SET_NODE_OPEN",
-  SET_NODE_VISITED = "SET_NODE_VISITED",
   NEXT_NODE = "NEXT_NODE",
   SET_TRIP_STARTED = "SET_TRIP_STARTED",
   SET_ROCKET_MOVING = "SET_ROCKET_MOVING",
@@ -11,7 +10,6 @@ export enum ActionType {
 
 type ActionPayloads = {
   [ActionType.SET_NODE_OPEN]: { index: number; isOpen: boolean };
-  [ActionType.SET_NODE_VISITED]: { index: number; isVisited: boolean };
   [ActionType.NEXT_NODE]: void;
   [ActionType.SET_TRIP_STARTED]: { isStarted: boolean };
   [ActionType.SET_ROCKET_MOVING]: { isMoving: boolean };
@@ -27,11 +25,6 @@ export type Action = {
  
 export const setNodeOpen = (payload:ActionPayloads[ActionType.SET_NODE_OPEN]): Action => ({
   type: ActionType.SET_NODE_OPEN,
-  payload
-});
-
-export const setNodeVisited = (payload:ActionPayloads[ActionType.SET_NODE_VISITED]): Action => ({
-  type: ActionType.SET_NODE_VISITED,
   payload
 });
 

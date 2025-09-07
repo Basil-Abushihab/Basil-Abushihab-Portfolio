@@ -60,7 +60,6 @@ export const MyJourney = () => {
             nodeLabel={node.nodeLabel}
             isLastNode={node.isLastNode}
             isOpen={node.isOpen}
-            isVisited={node.isVisited}
             nodeContent={node.nodeContent}
             nodeIndex={index}
           />

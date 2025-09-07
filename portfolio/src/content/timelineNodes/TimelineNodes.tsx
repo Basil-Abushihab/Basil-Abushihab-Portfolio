@@ -3,16 +3,32 @@ import firstMissionPlanet from "@/assets/timeline-assets/planets/FirstMissionPla
 import orangeLogo from "@/assets/timeline-assets/OrangeLogo.svg";
 import basilAstronaut from "@/assets/timeline-assets/BasilAstronaut.png";
 import projectsDebrief from "@/assets/timeline-assets/projectsDebriefSat.png";
-import { PopoverTechStackSection, type PopoverTechStackSectionProps } from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/TechStackSection";
+import utilNetLogo from "@/assets/timeline-assets/UtilNetLogo.png";
+import {
+  PopoverTechStackSection,
+  type PopoverTechStackSectionProps,
+} from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/TechStackSection";
 import type { ComponentType } from "react";
 import { AnimationVariants } from "@/utils/animation-utilities/animationVariants";
-import {  techStackSections, TimelineNodeNames } from "@/content/timelineNodes/techStackSectionContent";
+import {
+  techStackSections,
+  TimelineNodeNames,
+} from "@/content/timelineNodes/techStackSectionContent";
+import {
+  AdventureHighlightSection,
+  type AdventureHighlightSectionProps,
+} from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/AdventureHighlightSection";
+import {
+  PopoverArticleSection,
+  type Dates,
+  type PopoverArticleSectionProps,
+} from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/ArticleSection";
+import { AdditionalInformationSection, type AdditionalInformationSectionProps } from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/AdditionalInformationSection";
 
 //@TODO: Transform the content to be saved on the cloud using firebase for better scalability and easy access for updates.
 
 export type BaseSectionProps = {
-sectionTitle: string;
-  sectionMedia: string | string[];
+  sectionTitle: string;
 };
 
 export type ExtraSection<P = {}> = BaseSectionProps & {
@@ -23,6 +39,7 @@ export type ExtraSection<P = {}> = BaseSectionProps & {
 export type NodeContent = {
   title: string;
   description: string[];
+  dates?:Dates
   nodeLogo?: string;
   extraSections?: ExtraSection<any>[];
 };
@@ -31,95 +48,147 @@ export type TimelineNode = {
   nodeImg: string;
   nodeLabel: string;
   nodeContent: NodeContent;
-  nodeAnimationVariants:AnimationVariants;
+  nodeAnimationVariants: AnimationVariants;
   isLastNode: boolean;
   isOpen: boolean;
-  isVisited: boolean;
 };
 
 export const timeLineNodes: TimelineNode[] = [
   {
     nodeImg: basilAstronaut,
-    nodeAnimationVariants:AnimationVariants.MoveUpAndDown,
+    nodeAnimationVariants: AnimationVariants.MoveUpAndDown,
     nodeLabel: "Me",
     nodeContent: {
       title: "Who am I?",
       description: [
-          "I’m Basil Abushihab—welcome to a journey that grows every day with learning, innovation, and creativity.",
-          "I’ve wanted to be a software developer since I was a kid. I wrote my first lines of code in C++ in the 10th grade. I didn’t understand everything back then, but I was hooked—and I’ve been exploring this world ever since.",
-          "I’m passionate about what I do—whether it’s coding or my other hobbies—and I’m always striving to improve. I don’t stop until I reach my goals and see them through.",
+        "I’m Basil Abushihab—welcome to a journey that grows every day with learning, innovation, and creativity.",
+        "I’ve wanted to be a software developer since I was a kid. I wrote my first lines of code in C++ in the 10th grade. I didn’t understand everything back then, but I was hooked and I’ve been exploring this world ever since.",
+        "I’m passionate about what I do—whether it’s coding or my other hobbies—and I’m always striving to improve. I don’t stop until I reach my goals and see them through.",
       ],
       nodeLogo: basilAstronaut,
       extraSections: [
         {
+          sectionTitle: "Education",
+          component: PopoverArticleSection,
+          props: {
+            description: [
+              "To prepare for the long journey toward my dream, I set my course to become a software engineer. My launchpad was The Hashemite University — the place where I took my very first step toward achieving that dream. There, I laid the foundation for the mission ahead.",
+              "Over four years of study, I kept my hands busy and my mind sharp — coding every chance I got, refining my problem-solving skills, and exploring my creativity. I took part in problem-solving contests, deepening my understanding of the fascinating universe of algorithms and data structures.",
+              "After graduation, I set my sights on the horizon and kept moving forward — never slowing, never stopping — determined to reach my goals and bring my dream into reality.",
+            ],
+            dates: { min: 2020, max: 2024 },
+          },
+        } satisfies ExtraSection<PopoverArticleSectionProps>,
+        {
           sectionTitle: "My Tech Stack",
           component: PopoverTechStackSection,
-          sectionMedia: [],
-          props: {techStackGroups:techStackSections[TimelineNodeNames.AboutMe]?.techStackGroups ?? {}},
+          props: {
+            techStackGroups: techStackSections.FirstJob?.techStackGroups ?? {},
+          },
         } satisfies ExtraSection<PopoverTechStackSectionProps>,
+        {
+          sectionTitle: "My Hobbies",
+          component: AdditionalInformationSection,
+          props: {
+            Tags: [
+              { color: "#476EAE", text: "♟️ Chess" },
+              { color: "#B87C4C", text: "🏋️ Weightlifting" },
+              { color: "#67C090", text: "💻 Coding" },
+              { color: "purple", text: "🎮 Video Games" },
+            ],
+          },
+        } satisfies ExtraSection<AdditionalInformationSectionProps>,
       ],
     },
     isLastNode: false,
     isOpen: true,
-    isVisited: false,
   },
   {
     nodeImg: orangePlanet,
-    nodeAnimationVariants:AnimationVariants.Spin,
+    nodeAnimationVariants: AnimationVariants.Spin,
     nodeLabel: "Orange Coding Academy",
     nodeContent: {
       title: "Orange Coding Academy",
+      dates: { min: "May 2024", max: "Nov 2024" },
       description: [
-          "Orange Coding Academy is where my journey truly took off. Over seven intense months, I learned under pressure and came out with the skills and mindset that keep driving my learning and innovation.",
-          "I trained with both the PERN and MERN stacks, building 10 projects individually and in teams while following an Agile process. Those projects taught me how to think like a developer and collaborate effectively—making the most of limited time and pushing for creative solutions.",
-          "It’s also where my path began to take shape. That experience set me on my way to becoming the best version of myself—both as a developer and as a person.",
+        "Orange Coding Academy is where my journey truly took off. Over seven intense months, I learned under pressure and came out with the skills and mindset that keep driving my learning and innovation.",
+        "I trained with both the PERN and MERN stacks, building 10 projects individually and in teams while following an Agile process. Those projects taught me how to think like a developer and collaborate effectively—making the most of limited time and pushing for creative solutions.",
+        "It’s also where my path began to take shape. That experience set me on my way to becoming the best version of myself—both as a developer and as a person.",
       ],
       nodeLogo: orangeLogo,
       extraSections: [
         {
-          sectionTitle: "Aqquired Skills",
-          component: PopoverTechStackSection,
-          sectionMedia: [],
-          props: {techStackGroups:techStackSections.OrangeCodingAcademy?.techStackGroups ?? {}},
-        } satisfies ExtraSection<PopoverTechStackSectionProps>,
-      ],
-    },
-    isLastNode: false,
-    isOpen: false,
-    isVisited: false,
-  },
-  {
-    nodeAnimationVariants:AnimationVariants.Spin,
-    nodeLabel: "My First Mission",
-    nodeImg: firstMissionPlanet,
-    nodeContent: {
-      title: "My First Mission",
-      description: [
-        "And here we are to my first ever job A place that has taught me A lot and when I say A lot I mean it,"
-      ],
-      extraSections: [
+          sectionTitle: "Adventure Highlight",
+          component: AdventureHighlightSection,
+          props: {
+            highlightBulletPoints: [
+              "Served as Scrum Master for one of the 10 projects, taking on a leadership role where I guided the crew, steered our course through organized meetings and task management, and ensured our codebase remained clean, scalable, and mission-ready. ",
+              "Worked across a broad spectrum of technologies and features in the 10 web applications I helped launch — an experience that made me more agile, adaptable, and quick to respond to ever-changing mission conditions.",
+              "Adapted quickly to high-pressure scenarios, applying problem-solving skills that kept our projects on track and our missions successful.",
+            ],
+          },
+        } satisfies ExtraSection<AdventureHighlightSectionProps>,
         {
           sectionTitle: "Aqquired Skills",
           component: PopoverTechStackSection,
-          sectionMedia: [],
-          props: {techStackGroups:techStackSections.FirstJob?.techStackGroups ?? {}},
+          props: {
+            techStackGroups:
+              techStackSections.OrangeCodingAcademy?.techStackGroups ?? {},
+          },
         } satisfies ExtraSection<PopoverTechStackSectionProps>,
       ],
     },
     isLastNode: false,
     isOpen: false,
-    isVisited: false,
   },
   {
-    nodeAnimationVariants:AnimationVariants.MoveUpAndDown,
+    nodeAnimationVariants: AnimationVariants.Spin,
+    nodeLabel: "My First Adventure",
+    nodeImg: firstMissionPlanet,
+    nodeContent: {
+      title: "My First Adventure",
+      dates: { min: "Oct 2024", max: "Present" },
+      nodeLogo: utilNetLogo,
+      description: [
+        "Utilnet — the first destination in my journey. A place filled with ups and downs, where I gained invaluable experience and learned how to perform under tremendous pressure. It was here that my mindset was sharpened, teaching me how to push through challenges and emerge stronger.",
+        "My adventure included working on a Network Inventory Management system called ISP — a CAD-based platform for telecommunications companies, used to design and map telecom equipment across building floors. This required a great deal of attention to detail, writing clean, maintainable code, and ensuring high performance at all times.",
+        "Safe to say, this experience elevated me to the next level, bringing me one step closer to achieving my childhood dream.",
+      ],
+      extraSections: [
+        {
+          sectionTitle: "Adventure Highlight",
+          component: AdventureHighlightSection,
+          props: {
+            highlightBulletPoints: [
+              "Engineered a suite of high-precision, mission-critical features, including a snapping system for flawless alignment of equipment on the floor view, a symbology tool empowering users to mark and customize components with colors and visual identifiers, and additional high-performance capabilities to ensure the system remained responsive and accurate under demanding operational conditions.",
+
+              "Spearheaded the navigation from a legacy Redux codebase to Redux Toolkit, charting a new course for state management that boosted scalability, simplified maintenance, and positioned the application’s architecture for future missions.",
+
+              "Enhanced the codebase’s readability, maintainability, and usability, while also proposing and advocating for key frontend security upgrades to safeguard the mission’s systems and ensure a stable flight path for future deployments.",
+            ],
+          },
+        } satisfies ExtraSection<AdventureHighlightSectionProps>,
+        {
+          sectionTitle: "Aqquired Skills",
+          component: PopoverTechStackSection,
+          props: {
+            techStackGroups: techStackSections.FirstJob?.techStackGroups ?? {},
+          },
+        } satisfies ExtraSection<PopoverTechStackSectionProps>,
+      ],
+    },
+    isLastNode: false,
+    isOpen: false,
+  },
+  {
+    nodeAnimationVariants: AnimationVariants.MoveUpAndDown,
     nodeLabel: "Projects Debrief",
     nodeImg: projectsDebrief,
     nodeContent: {
       title: "Projects Debrief",
-      description:[]
+      description: [],
     },
     isLastNode: true,
     isOpen: false,
-    isVisited: false,
   },
 ];

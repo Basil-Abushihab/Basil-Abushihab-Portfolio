@@ -16,6 +16,7 @@ import GitLogo from "@/assets/tech-logos/devops/Git.svg";
 import GitHubLogo from "@/assets/tech-logos/devops/GitHub.svg";
 import PowerShellLogo from "@/assets/tech-logos/devops/PowerShell.svg";
 import GitLabLogo from "@/assets/tech-logos/devops/GitLab.svg";
+import ASPNETLogo from "@/assets/tech-logos/back-end/ASPNETLogo.svg"
 
 export enum TechSectionGroups {
   FrontEnd = "Front-End",
@@ -181,6 +182,7 @@ export const techStackSections: TechStackSection = {
         { techTitle: "Redux", techMedia: ReduxLogo },
       ],
       [TechSectionGroups.BackEnd]: [
+        { techTitle: "ASP.NET", techMedia: ASPNETLogo },
         { techTitle: "PostgreSQL", techMedia: PostgreSQLLogo },
       ],
       [TechSectionGroups.DevOps]: [

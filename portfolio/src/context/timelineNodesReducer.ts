@@ -30,12 +30,6 @@ const Reducer = (state: State, action: Action): State => {
       updated[index].isOpen = isOpen;
       return { ...state, timelineNodes: updated };
     }
-    case ActionType.SET_NODE_VISITED: {
-      const {index,isVisited}=action.payload;
-      const updated = [...state.timelineNodes];
-      updated[index].isVisited = isVisited;
-      return { ...state, timelineNodes: updated };
-    }
     case ActionType.NEXT_NODE: {
       const next = state.visitedNodeNumber + 1;
       const isTripFinished=next >= state.timelineNodes.length

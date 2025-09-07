@@ -12,7 +12,6 @@ import type { ComponentType } from "react";
 import { AnimationVariants } from "@/utils/animation-utilities/animationVariants";
 import {
   techStackSections,
-  TimelineNodeNames,
 } from "@/content/timelineNodes/techStackSectionContent";
 import {
   AdventureHighlightSection,

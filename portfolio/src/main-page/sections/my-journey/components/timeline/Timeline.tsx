@@ -11,7 +11,6 @@ type TimelineProps = {
   nodeAnimationVariant:Variant;
   isLastNode:boolean;
   isOpen:boolean;
-  isVisited:boolean;
   nodeContent:TimelineNodeType["nodeContent"];
   nodeIndex:number;
 }

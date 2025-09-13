@@ -32,7 +32,7 @@ const Reducer = (state: State, action: Action): State => {
     }
     case ActionType.NEXT_NODE: {
       const next = state.visitedNodeNumber + 1;
-      const isTripFinished=next >= state.timelineNodes.length
+      const isTripFinished=next >= state.timelineNodes.length-1
       return {
         ...state,
         visitedNodeNumber: next,

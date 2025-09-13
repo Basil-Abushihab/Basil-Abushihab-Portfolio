@@ -19,7 +19,7 @@ export const PopoverArticleSection = (props: PopoverArticleSectionProps & BaseSe
       <div className="flex flex-row items-end gap-4">
         {!lodash.isUndefined(nodeLogo) &&<img src={nodeLogo} className="w-[60px] h-[60px]" alt={sectionTitle} />}
         <div className="flex flex-col">
-        <h3 className="text-lg font-bold mb-2">{sectionTitle}</h3>
+        <h3 className="text-lg md:text-xl font-bold mb-2">{sectionTitle}</h3>
         {!lodash.isUndefined(dates) && (
           <h5 className="text-sm mb-2 text-gray-600">{dates.min} - {dates.max}</h5>
         )}
@@ -27,7 +27,7 @@ export const PopoverArticleSection = (props: PopoverArticleSectionProps & BaseSe
       </div>
 
       {description.map((desc, index) => (
-        <p key={index} className="mb-2">
+        <p key={index} className="mb-2 text-md md:text-xl">
           {desc}
         </p>
       ))}

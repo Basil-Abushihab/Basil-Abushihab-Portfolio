@@ -1,7 +1,7 @@
 import { nextNode, setNodeOpen } from "@/context/actions";
 import { useTimeLineNodes } from "@/context/TimelineNodesContext";
 import { Rocket } from "@/main-page/sections/my-journey/components/rocket/Rocket";
-import { RocketLaunchButtonBackground } from "@/main-page/sections/my-journey/components/RocketLaunchButton/RocketLaunchButtonBackground";
+import { RocketLaunchButtonBackground } from "@/main-page/sections/my-journey/components/rocket-launch-button/RocketLaunchButtonBackground";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useState } from "react";

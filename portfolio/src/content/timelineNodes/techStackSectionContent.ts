@@ -1,4 +1,4 @@
-import type { PopoverTechStackSectionProps } from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/TechStackSection";
+import type { PopoverTechStackSectionProps } from "@/main-page/sections/my-journey/components/timeline-popups/popups-sections/TechStackSection";
 import ReactLogo from "@/assets/tech-logos/front-end/React.svg";
 import NextLogo from "@/assets/tech-logos/front-end/NextJs.svg";
 import TailwindLogo from "@/assets/tech-logos/front-end/TailwindCss.svg";
@@ -16,7 +16,9 @@ import GitLogo from "@/assets/tech-logos/devops/Git.svg";
 import GitHubLogo from "@/assets/tech-logos/devops/GitHub.svg";
 import PowerShellLogo from "@/assets/tech-logos/devops/PowerShell.svg";
 import GitLabLogo from "@/assets/tech-logos/devops/GitLab.svg";
-import ASPNETLogo from "@/assets/tech-logos/back-end/ASPNETLogo.svg"
+import ASPNETLogo from "@/assets/tech-logos/back-end/ASPNETLogo.svg";
+import FirebaseLogo from "@/assets/tech-logos/back-end/Firebase.svg";
+import type { EnumValues } from "@/utils/typescript-utilities/enumMappingUtility";
 
 export enum TechSectionGroups {
   FrontEnd = "Front-End",
@@ -30,42 +32,47 @@ export enum TimelineNodeNames {
   FirstJob = "FirstJob",
 }
 
-type TechStackSection = Partial<
-  Record<TimelineNodeNames, PopoverTechStackSectionProps>
->;
+export enum ProjectsNames {
+  SkyLine = "SkyLine",
+  Sawtak = "Sawtak",
+  TheJoyOfLearningEnglish = "The Joy of learning English",
+}
 
-export const techStackSections: TechStackSection = {
+
+export type TechStackSection<T extends string> = Partial<Record<T, PopoverTechStackSectionProps>>;
+
+export const techStackSections: TechStackSection<EnumValues<typeof TimelineNodeNames>> = {
   [TimelineNodeNames.AboutMe]: {
     techStackGroups: {
       [TechSectionGroups.FrontEnd]: [
         {
           experienceUnit: "Years",
           techTitle: "React",
-          experience: 1.5,
+          experience: 2,
           techMedia: ReactLogo,
         },
         {
-          experienceUnit: "months",
+          experienceUnit: "Year",
           techTitle: "Next.Js",
-          experience: 7,
+          experience: 1,
           techMedia: NextLogo,
         },
         {
           experienceUnit: "Years",
           techTitle: "Typescript",
-          experience: 1.5,
+          experience: 2,
           techMedia: TypeScript,
         },
         {
           experienceUnit: "Years",
           techTitle: "TailwindCSS",
-          experience: 1.5,
+          experience: 2,
           techMedia: TailwindLogo,
         },
         {
           experienceUnit: "Years",
           techTitle: "Redux",
-          experience: 1.5,
+          experience: 2,
           techMedia: ReduxLogo,
         },
       ],
@@ -73,11 +80,11 @@ export const techStackSections: TechStackSection = {
         {
           experienceUnit: "Years",
           techTitle: "Node.Js",
-          experience: 1.5,
+          experience: 2,
           techMedia: NodeJsLogo,
         },
         {
-          experienceUnit: "Years",
+          experienceUnit: "Year",
           techTitle: "Express.Js",
           experience: 1,
           techMedia: ExpressLogo,
@@ -91,7 +98,7 @@ export const techStackSections: TechStackSection = {
         {
           experienceUnit: "Years",
           techTitle: "Typescript",
-          experience: 1.5,
+          experience: 2,
           techMedia: TypeScript,
         },
         {
@@ -103,13 +110,13 @@ export const techStackSections: TechStackSection = {
         {
           experienceUnit: "Years",
           techTitle: "PostgreSQL",
-          experience: 1.5,
+          experience: 2,
           techMedia: PostgreSQLLogo,
         },
         {
-          experienceUnit: "months",
+          experienceUnit: "year",
           techTitle: "MongoDB",
-          experience: 6,
+          experience: 1,
           techMedia: MongoDBLogo,
         },
       ],
@@ -121,13 +128,13 @@ export const techStackSections: TechStackSection = {
           techMedia: DockerLogo,
         },
         {
-          experienceUnit: "Years",
+          experienceUnit: "Year",
           techTitle: "Bash",
           experience: 1,
           techMedia: BashLogo,
         },
         {
-          experienceUnit: "Years",
+          experienceUnit: "Year",
           techTitle: "PowerShell",
           experience: 1,
           techMedia: PowerShellLogo,
@@ -139,15 +146,15 @@ export const techStackSections: TechStackSection = {
           techMedia: GitLogo,
         },
         {
-          experienceUnit: "Years",
+          experienceUnit: "Year",
           techTitle: "GitLab",
           experience: 1,
           techMedia: GitLabLogo,
         },
         {
-          experienceUnit: "Years",
+          experienceUnit: "Year",
           techTitle: "GitHub",
-          experience: 1,
+          experience: 2,
           techMedia: GitHubLogo,
         },
       ],
@@ -190,4 +197,93 @@ export const techStackSections: TechStackSection = {
         { techTitle: "GitLab", techMedia: GitLabLogo },
       ],
     } },
+};
+
+
+export const projectsStack: TechStackSection<EnumValues<typeof ProjectsNames>> = {
+  [ProjectsNames.SkyLine]: {
+    techStackGroups: {
+      [TechSectionGroups.FrontEnd]: [
+         {
+          techTitle: "React",
+          techMedia: ReactLogo,
+        },
+        {
+          techTitle: "Tawilwind",
+          techMedia: TailwindLogo,
+        },
+      ],
+      [TechSectionGroups.BackEnd]: [
+        {
+          techTitle: "Firebase",
+          techMedia: FirebaseLogo,
+        },
+      ],
+    },
+  },
+  [ProjectsNames.Sawtak]: {
+    techStackGroups: {
+      [TechSectionGroups.FrontEnd]: [
+        {
+          techTitle: "React",
+          techMedia: ReactLogo,
+        },
+        {
+          techTitle: "Tawilwind",
+          techMedia: TailwindLogo,
+        },
+      ],
+      [TechSectionGroups.BackEnd]: [
+        {
+          techTitle: "Node.Js",
+          techMedia: NodeJsLogo,
+        },
+        {
+          techTitle: "Express.Js",
+          techMedia: ExpressLogo,
+        },
+        {
+          techTitle: "PostgreSQL",
+          techMedia: PostgreSQLLogo,
+        },
+      ],
+    },
+  },
+  [ProjectsNames.TheJoyOfLearningEnglish]: {
+    techStackGroups: {
+      [TechSectionGroups.FrontEnd]: [
+        {
+          techTitle: "React",
+          techMedia: ReactLogo,
+        },
+        {
+          techTitle: "Tawilwind",
+          techMedia: TailwindLogo,
+        },
+        {
+          techTitle: "Typescript",
+          techMedia: TypeScript,
+        },
+      ],
+      [TechSectionGroups.BackEnd]: [
+        {
+          techTitle: "Nest.Js",
+          techMedia: NestLogo,
+        },
+
+        {
+          techTitle: "Prisma",
+          techMedia: PrismaLogo,
+        },
+        {
+          techTitle: "PostgreSQL",
+          techMedia: PostgreSQLLogo,
+        },
+        {
+          techTitle: "Typescript",
+          techMedia: TypeScript,
+        },
+      ],
+    },
+  },
 };

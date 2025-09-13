@@ -9,7 +9,7 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
       <SvgDefs />
       <Topbar />
       <TimelineNodesProvider>
-        <main className="bg-main px-5 mt-5 md:px-10 lg:px-20">
+        <main className="bg-main px-5 mt-5 md:px-10 lg:px-20 h-[150%]">
           {children}
         </main>
       </TimelineNodesProvider>

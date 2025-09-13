@@ -10,8 +10,8 @@ export const AdventureHighlightSection = (
 
   return (
     <div className="flex flex-col gap-4 w-full font-satoshi">
-      <h3 className="text-lg font-bold mb-2">{sectionTitle}</h3>
-      <ul className="list-disc list-inside space-y-4">
+      <h3 className="text-md md:text-xl font-bold mb-2">{sectionTitle}</h3>
+      <ul className="list-disc list-inside space-y-4 text-md md:text-xl">
         {highlightBulletPoints.map((bulletPoint, index) => (
           <li key={index}>{bulletPoint}</li>
         ))}

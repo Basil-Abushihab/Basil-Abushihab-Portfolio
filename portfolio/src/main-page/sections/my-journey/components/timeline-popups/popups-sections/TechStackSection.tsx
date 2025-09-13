@@ -32,7 +32,7 @@ export const PopoverTechStackSection = (
       <h3 className="text-lg font-bold mb-2">{sectionTitle}</h3>
       <Accordion type="single" collapsible className="w-full">
         {Object.keys(techStackGroups).map((techStackGroup) => (
-          <AccordionItem key={techStackGroup} value={techStackGroup}>
+          <AccordionItem key={techStackGroup} className="text-md md:text-xl"  value={techStackGroup}>
             <AccordionTrigger className="cursor-pointer">
               {techStackGroup}
             </AccordionTrigger>
@@ -45,7 +45,7 @@ export const PopoverTechStackSection = (
                       alt={techStackInfo.techTitle}
                       className="w-8"
                     />
-                    <h3 className="font-bold">{techStackInfo.techTitle}</h3>
+                    <h3 className="font-bold text-xl">{techStackInfo.techTitle}</h3>
                     {techStackInfo.experience ||
                     techStackInfo.experienceUnit ? (
                       <Badge

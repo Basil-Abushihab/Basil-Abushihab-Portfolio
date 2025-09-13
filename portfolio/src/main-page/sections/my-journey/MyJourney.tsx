@@ -24,7 +24,7 @@ export const MyJourney = () => {
   },[isTripStarted])
 
   return (
-    <div className={cn("flex flex-col items-center justify-center w-full mt-60 md:mt-70",clsx({"hidden":!isTripStarted,"relative":isTripStarted}))}>
+    <div className={cn("flex flex-col items-center justify-center w-full mt-60  md:mt-70",clsx({"hidden":!isTripStarted,"relative":isTripStarted}))}>
       <Rocket
         ref={rocketRef}
         height="80px"

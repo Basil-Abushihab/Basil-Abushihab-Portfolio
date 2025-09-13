@@ -1,0 +1,1 @@
+export type EnumValues<E> = E[keyof E];

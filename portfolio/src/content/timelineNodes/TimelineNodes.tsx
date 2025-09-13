@@ -7,22 +7,24 @@ import utilNetLogo from "@/assets/timeline-assets/UtilNetLogo.png";
 import {
   PopoverTechStackSection,
   type PopoverTechStackSectionProps,
-} from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/TechStackSection";
+} from "@/main-page/sections/my-journey/components/timeline-popups/popups-sections/TechStackSection";
 import type { ComponentType } from "react";
 import { AnimationVariants } from "@/utils/animation-utilities/animationVariants";
-import {
-  techStackSections,
-} from "@/content/timelineNodes/techStackSectionContent";
+import { techStackSections } from "@/content/timelineNodes/techStackSectionContent";
 import {
   AdventureHighlightSection,
   type AdventureHighlightSectionProps,
-} from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/AdventureHighlightSection";
+} from "@/main-page/sections/my-journey/components/timeline-popups/popups-sections/AdventureHighlightSection";
 import {
   PopoverArticleSection,
   type Dates,
   type PopoverArticleSectionProps,
-} from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/ArticleSection";
-import { AdditionalInformationSection, type AdditionalInformationSectionProps } from "@/main-page/sections/my-journey/components/timelinePopups/popupsSections/AdditionalInformationSection";
+} from "@/main-page/sections/my-journey/components/timeline-popups/popups-sections/ArticleSection";
+import {
+  ProjectsSection,
+  type ProjectsSectionProps,
+} from "@/main-page/sections/my-journey/components/timeline-popups/popups-sections/projects-section/ProjectsSection";
+import { projectsCollection } from "@/content/timelineNodes/projectsCollection";
 
 //@TODO: Transform the content to be saved on the cloud using firebase for better scalability and easy access for updates.
 
@@ -36,11 +38,9 @@ export type ExtraSection<P = {}> = BaseSectionProps & {
 };
 
 export type NodeContent = {
-  title: string;
-  description: string[];
-  dates?:Dates
+  dates?: Dates;
   nodeLogo?: string;
-  extraSections?: ExtraSection<any>[];
+  sections?: ExtraSection<any>[];
 };
 
 export type TimelineNode = {
@@ -58,14 +58,19 @@ export const timeLineNodes: TimelineNode[] = [
     nodeAnimationVariants: AnimationVariants.MoveUpAndDown,
     nodeLabel: "Me",
     nodeContent: {
-      title: "Who am I?",
-      description: [
-        "I’m Basil Abushihab—welcome to a journey that grows every day with learning, innovation, and creativity.",
-        "I’ve wanted to be a software developer since I was a kid. I wrote my first lines of code in C++ in the 10th grade. I didn’t understand everything back then, but I was hooked and I’ve been exploring this world ever since.",
-        "I’m passionate about what I do—whether it’s coding or my other hobbies—and I’m always striving to improve. I don’t stop until I reach my goals and see them through.",
-      ],
-      nodeLogo: basilAstronaut,
-      extraSections: [
+      sections: [
+        {
+          sectionTitle: "Who am I?",
+          component: PopoverArticleSection,
+          props: {
+            description: [
+              "I’m Basil Abushihab—welcome to a journey that grows every day with learning, innovation, and creativity.",
+              "I’ve wanted to be a software developer since I was a kid. I wrote my first lines of code in C++ in the 10th grade. I didn’t understand everything back then, but I was hooked and I’ve been exploring this world ever since.",
+              "I’m passionate about what I do—whether it’s coding or my other hobbies—and I’m always striving to improve. I don’t stop until I reach my goals and see them through.",
+            ],
+            nodeLogo: basilAstronaut,
+          },
+        } satisfies ExtraSection<PopoverArticleSectionProps>,
         {
           sectionTitle: "Education",
           component: PopoverArticleSection,
@@ -82,21 +87,9 @@ export const timeLineNodes: TimelineNode[] = [
           sectionTitle: "My Tech Stack",
           component: PopoverTechStackSection,
           props: {
-            techStackGroups: techStackSections.FirstJob?.techStackGroups ?? {},
+            techStackGroups: techStackSections.AboutMe?.techStackGroups ?? {},
           },
         } satisfies ExtraSection<PopoverTechStackSectionProps>,
-        {
-          sectionTitle: "My Hobbies",
-          component: AdditionalInformationSection,
-          props: {
-            Tags: [
-              { color: "#476EAE", text: "♟️ Chess" },
-              { color: "#B87C4C", text: "🏋️ Weightlifting" },
-              { color: "#67C090", text: "💻 Coding" },
-              { color: "purple", text: "🎮 Video Games" },
-            ],
-          },
-        } satisfies ExtraSection<AdditionalInformationSectionProps>,
       ],
     },
     isLastNode: false,
@@ -107,15 +100,20 @@ export const timeLineNodes: TimelineNode[] = [
     nodeAnimationVariants: AnimationVariants.Spin,
     nodeLabel: "Orange Coding Academy",
     nodeContent: {
-      title: "Orange Coding Academy",
-      dates: { min: "May 2024", max: "Nov 2024" },
-      description: [
-        "Orange Coding Academy is where my journey truly took off. Over seven intense months, I learned under pressure and came out with the skills and mindset that keep driving my learning and innovation.",
-        "I trained with both the PERN and MERN stacks, building 10 projects individually and in teams while following an Agile process. Those projects taught me how to think like a developer and collaborate effectively—making the most of limited time and pushing for creative solutions.",
-        "It’s also where my path began to take shape. That experience set me on my way to becoming the best version of myself—both as a developer and as a person.",
-      ],
-      nodeLogo: orangeLogo,
-      extraSections: [
+      sections: [
+        {
+          sectionTitle: "Orange Coding Academy",
+          component: PopoverArticleSection,
+          props: {
+            dates: { min: "May 2024", max: "Nov 2024" },
+            description: [
+              "Orange Coding Academy is where my journey truly took off. Over seven intense months, I learned under pressure and came out with the skills and mindset that keep driving my learning and innovation.",
+              "I trained with both the PERN and MERN stacks, building 10 projects individually and in teams while following an Agile process. Those projects taught me how to think like a developer and collaborate effectively—making the most of limited time and pushing for creative solutions.",
+              "It’s also where my path began to take shape. That experience set me on my way to becoming the best version of myself—both as a developer and as a person.",
+            ],
+            nodeLogo: orangeLogo,
+          },
+        } satisfies ExtraSection<PopoverArticleSectionProps>,
         {
           sectionTitle: "Adventure Highlight",
           component: AdventureHighlightSection,
@@ -145,15 +143,20 @@ export const timeLineNodes: TimelineNode[] = [
     nodeLabel: "My First Adventure",
     nodeImg: firstMissionPlanet,
     nodeContent: {
-      title: "My First Adventure",
-      dates: { min: "Oct 2024", max: "Present" },
-      nodeLogo: utilNetLogo,
-      description: [
-        "Utilnet — the first destination in my journey. A place filled with ups and downs, where I gained invaluable experience and learned how to perform under tremendous pressure. It was here that my mindset was sharpened, teaching me how to push through challenges and emerge stronger.",
-        "My adventure included working on a Network Inventory Management system called ISP — a CAD-based platform for telecommunications companies, used to design and map telecom equipment across building floors. This required a great deal of attention to detail, writing clean, maintainable code, and ensuring high performance at all times.",
-        "Safe to say, this experience elevated me to the next level, bringing me one step closer to achieving my childhood dream.",
-      ],
-      extraSections: [
+      sections: [
+        {
+          sectionTitle: "My First Adventure",
+          component: PopoverArticleSection,
+          props: {
+            dates: { min: "Oct 2024", max: "Present" },
+            nodeLogo: utilNetLogo,
+            description: [
+              "Utilnet — the first destination in my journey. A place filled with ups and downs, where I gained invaluable experience and learned how to perform under tremendous pressure. It was here that my mindset was sharpened, teaching me how to push through challenges and emerge stronger.",
+              "My adventure included working on a Network Inventory Management system called ISP — a CAD-based platform for telecommunications companies, used to design and map telecom equipment across building floors. This required a great deal of attention to detail, writing clean, maintainable code, and ensuring high performance at all times.",
+              "Safe to say, this experience elevated me to the next level, bringing me one step closer to achieving my childhood dream.",
+            ],
+          },
+        } satisfies ExtraSection<PopoverArticleSectionProps>,
         {
           sectionTitle: "Adventure Highlight",
           component: AdventureHighlightSection,
@@ -184,8 +187,23 @@ export const timeLineNodes: TimelineNode[] = [
     nodeLabel: "Projects Debrief",
     nodeImg: projectsDebrief,
     nodeContent: {
-      title: "Projects Debrief",
-      description: [],
+      sections: [
+        {
+          component: PopoverArticleSection,
+          props: {
+            description: [
+              "And so, we’ve reached the last waypoint of my adventures… for now.",
+              "Here lies the mission log — a collection of all my projects and expeditions, both completed and in progress, each one documented and ready for you to explore. But the journey doesn’t truly end here. Beyond this point awaits the final transmission — my last words in this voyage, and your open invitation to connect as we chart the next course together."
+            ],
+          },
+          sectionTitle: "Projects Debrief",
+        } satisfies ExtraSection<PopoverArticleSectionProps>,
+        {
+          component: ProjectsSection,
+          props: { projects: projectsCollection },
+          sectionTitle: "My Projects",
+        } satisfies ExtraSection<ProjectsSectionProps>,
+      ],
     },
     isLastNode: true,
     isOpen: false,

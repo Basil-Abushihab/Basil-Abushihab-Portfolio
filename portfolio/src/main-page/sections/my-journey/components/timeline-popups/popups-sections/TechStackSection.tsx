@@ -45,7 +45,7 @@ export const PopoverTechStackSection = (
                       alt={techStackInfo.techTitle}
                       className="w-8"
                     />
-                    <h3 className="font-bold text-xl">{techStackInfo.techTitle}</h3>
+                    <h3 className="font-bold">{techStackInfo.techTitle}</h3>
                     {techStackInfo.experience ||
                     techStackInfo.experienceUnit ? (
                       <Badge

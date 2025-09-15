@@ -70,10 +70,10 @@ It’s not just a portfolio — it’s a **cosmic narrative of my journey as a d
 ```
 
 ```
- 🌍 Hero section .............. ✅ Completed
- 🚀 My Journey Galaxy ......... 🚧 In Progress
- 🛰 Projects Station .......... ⏳ Planned
- 🌌 Contact Nebula ............ ⏳ Planned
+ 🌍 Hero section .............. ✅ Operational
+ 🚀 My Journey Galaxy ......... ✅ Operational
+ 🛰 Projects Station .......... ✅ Operational
+ 🌌 Contact Nebula ............ ✅ Operational
 ```
 
 ---
@@ -82,7 +82,7 @@ It’s not just a portfolio — it’s a **cosmic narrative of my journey as a d
 
 ```
  🌍 Hero Section ────► 🚀 My Journey ────► 🛰 Projects ────► 🌌 Contact
-           [Done]        [Building...]       [Next Up]         [Incoming...]
+           [Live]        [Live]       [Live]         [Live]
 ```
 
 ---
@@ -93,20 +93,20 @@ It’s not just a portfolio — it’s a **cosmic narrative of my journey as a d
 > roadmap --next
 ```
 
-🔭 Charting the stars: **My Journey Galaxy**  
-🛰 Docking soon: **Projects Station**  
-🌌 Transmission ahead: **Contact Nebula**  
-✨ Continuous mission upgrades: smoother animations, galactic interactions, and more star dust polish  
+✨ Continuous refinements: smoother animations & interstellar polish
+🔭 Expanding galaxies: more projects and interactive missions
+🛰 Docking updates: performance boosts and fresh cosmic UX
 
 ---
 
 ## 📝 Closing Note  
 
 ```bash
-> echo "This portfolio is still fueling up... Enjoy the ride through my cosmic adventure!"
+> echo "The portfolio is live and charting its course among the stars. 
+> But exploration never ends — upgrades, new missions, and discoveries await!"
 ```
 
 ---
 
-🌌 **May your journey through my portfolio be full of stars,  
-not trapped in 404 black holes!**
+🌌 **The rocket has launched, the mission is live,
+and the universe of code keeps expanding.**

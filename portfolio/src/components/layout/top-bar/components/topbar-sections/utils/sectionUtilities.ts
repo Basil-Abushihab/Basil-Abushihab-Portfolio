@@ -12,8 +12,9 @@ export const useTopBarSections = (
   const applySectionSelection = (section: TopbarSectionItems) => {
     if (setOpen) setOpen(false);
     const index = getSectionsNodeIndex(section.href);
-    if (index < 0) return;
+    if (index >= 0) 
     dispatch(setNodeOpen({ index: index, isOpen: true }));
+
     dispatch(setJourneyModeActive({ isActive: false }));
 
     setTimeout(() => {

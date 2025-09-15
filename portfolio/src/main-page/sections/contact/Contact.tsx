@@ -5,12 +5,14 @@ import CVLogo from "@/assets/CV.png";
 import EmailLogo from "@/assets/Email.png";
 import { motion } from "framer-motion";
 import clsx from "clsx";
+import { SectionTitles } from "@/components/layout/top-bar/components/topbar-sections/models/topBarSection";
 
 export const Contact = () => {
   const { isTripStarted,isJoruenyModeActive } = useTimeLineNodes();
 
   return (
     <div
+      id={SectionTitles.JoinMe}
       className={clsx(
         "mt-[1200px] mb-10 w-full flex flex-col md:flex-row justify-center items-start gap-12 px-8",
         { hidden: !isTripStarted && isJoruenyModeActive }

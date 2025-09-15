@@ -16,7 +16,6 @@ export const TimelineNode = (props: TimelineLogoProps) => {
   const {isJoruenyModeActive,isTripFinished,dispatch}=useTimeLineNodes();
   const handleNodeClick=()=>{
     if(isJoruenyModeActive && !isTripFinished){
-      console.log(isJoruenyModeActive,isTripFinished)
       return;
     }
     dispatch(setNodeOpen({index:nodeIndex,isOpen:!isOpen}));

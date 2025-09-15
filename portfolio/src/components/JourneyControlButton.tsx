@@ -3,7 +3,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { setJourneyModeActive } from "@/context/actions";
+import { resetJourneyMode, setJourneyModeActive } from "@/context/actions";
 import { useTimeLineNodes } from "@/context/TimelineNodesContext";
 import { Rocket } from "@/main-page/sections/my-journey/components/rocket/Rocket";
 import clsx from "clsx";
@@ -18,6 +18,10 @@ const JourneyControlButtonComponent = (
   const { ref } = props;
   const { dispatch, isJoruenyModeActive, isTripFinished } = useTimeLineNodes();
   const toggleJourneyMode = () => {
+    if(isTripFinished){
+      dispatch(resetJourneyMode());
+      return;
+    }
     dispatch(setJourneyModeActive({ isActive: !isJoruenyModeActive }));
   };
   return (

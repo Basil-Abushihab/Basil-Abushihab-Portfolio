@@ -1,4 +1,3 @@
-import { useTimeLineNodes } from "@/context/TimelineNodesContext";
 import type { TimeLinePopupProps } from "@/main-page/sections/my-journey/components/timeline-popups/TimelinePopup";
 import { returnAnimationVariant } from "@/utils/animation-utilities/animationUtilityFunctions";
 import { AnimationVariants } from "@/utils/animation-utilities/animationVariants";
@@ -6,10 +5,9 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 
 export const TimelinePopupContent = (props: TimeLinePopupProps) => {
-  const { nodeIndex,nodeContent,isLastNode } = props;
+  const { nodeContent,isLastNode,isOpen } = props;
   const {sections}=nodeContent;
-  const {getIsTimeLineNodeOpen}=useTimeLineNodes();
-  const animationType=getIsTimeLineNodeOpen(nodeIndex) ? AnimationVariants.Popup : AnimationVariants.Popout;
+  const animationType=isOpen ? AnimationVariants.Popup : AnimationVariants.Popout;
   const animationVariant=returnAnimationVariant(animationType as AnimationVariants);
 
   return (

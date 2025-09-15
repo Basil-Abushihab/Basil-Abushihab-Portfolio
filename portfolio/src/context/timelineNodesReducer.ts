@@ -65,6 +65,17 @@ const Reducer = (state: State, action: Action): State => {
       };
       return newState;
     }
+    case ActionType.RESET_JOURNEY_MODE:{
+      const newState: State = {
+        isJoruenyModeActive: true,
+        isRocketMoving: false,
+        isTripStarted: false,
+        isTripFinished: false,
+        visitedNodeNumber: 0,
+        timelineNodes: timeLineNodes.map((node) => ({ ...node })),
+      };
+      return newState;
+    }
     default:
       return state;
   }

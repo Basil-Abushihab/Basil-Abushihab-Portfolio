@@ -6,6 +6,7 @@ export enum ActionType {
   SET_ROCKET_MOVING = "SET_ROCKET_MOVING",
   SET_TRIP_ENDED = "SET_TRIP_ENDED",
   SET_JORUENY_MODE_ACTIVE="SET_JORUENY_MODE_ACTIVE",
+  RESET_JOURNEY_MODE="RESET_JOURNEY_MODE"
 }
 
 type ActionPayloads = {
@@ -15,6 +16,7 @@ type ActionPayloads = {
   [ActionType.SET_ROCKET_MOVING]: { isMoving: boolean };
   [ActionType.SET_TRIP_ENDED]:{isEnded:boolean};
   [ActionType.SET_JORUENY_MODE_ACTIVE]:{isActive:boolean};
+  [ActionType.RESET_JOURNEY_MODE]:void
 };
 
 export type Action = {
@@ -50,4 +52,8 @@ export const setTripEnded = (payload:ActionPayloads[ActionType.SET_TRIP_ENDED]):
 export const setJourneyModeActive = (payload:ActionPayloads[ActionType.SET_JORUENY_MODE_ACTIVE]): Action => ({
   type:ActionType.SET_JORUENY_MODE_ACTIVE,
   payload
+})
+
+export const resetJourneyMode=():Action=>({
+  type:ActionType.RESET_JOURNEY_MODE,
 })

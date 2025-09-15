@@ -7,6 +7,7 @@ type State = {
   isTripStarted: boolean;
   isRocketMoving: boolean;
   isTripFinished:boolean;
+  isJoruenyModeActive:boolean;
   windowPosition?:{windowPositionY:number,windowPositionX:number};
 };
 
@@ -16,6 +17,7 @@ export const initialState: State = {
   isRocketMoving: false,
   isTripStarted: false,
   isTripFinished:false,
+  isJoruenyModeActive:true,
 };
 
 export type TimeLineNodesContextType = State & {
@@ -49,10 +51,19 @@ const Reducer = (state: State, action: Action): State => {
     }
     case ActionType.SET_TRIP_ENDED:{
       const {isEnded}=action.payload;
-      return {...state,isTripFinished:isEnded};
+      return {...state,isTripFinished:isEnded,isJoruenyModeActive:false};
     }
-    case ActionType.SET_WINDOW_POSITION:{
-       return {...state,windowPosition:action.payload}
+    case ActionType.SET_JORUENY_MODE_ACTIVE:{
+      const {isActive}=action.payload;
+      const newState: State = {
+        isJoruenyModeActive: isActive,
+        isRocketMoving: false,
+        isTripStarted: false,
+        isTripFinished: false,
+        visitedNodeNumber: 0,
+        timelineNodes: timeLineNodes.map((node) => ({ ...node })),
+      };
+      return newState;
     }
     default:
       return state;

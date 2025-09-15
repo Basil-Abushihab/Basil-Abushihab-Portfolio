@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import CodePicture from "@/assets/CodePicture.png";
 import { Button } from "@/components/ui/button";
 import type { MouseEventHandler } from "react";
+import clsx from "clsx";
 
 type ProjectCardsCoverProps = {
   projectName: string;
@@ -26,13 +27,14 @@ export const ProjectCardsCover = (props: ProjectCardsCoverProps) => {
     featuredTags,
     projectRepoLink,
   } = props;
-
   return (
     <motion.div
       animate={{ opacity: isSelected ? 0 : 1 }}
-      style={{ pointerEvents: isSelected ? "none" : "auto" }}
+      className={clsx("absolute inset-0 w-full h-full bg-gray-200 z-50 flex items-end text-white text-2xl font-bold font-satoshi",{
+        "pointer-events-none":isSelected,
+        "pointer-events-auto":!isSelected
+      })}
       onClick={onClick}
-      className="absolute inset-0 w-full h-full bg-gray-200 z-50 flex items-end text-white text-2xl font-bold font-satoshi"
     >
       <div
         style={{

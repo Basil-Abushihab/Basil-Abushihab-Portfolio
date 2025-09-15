@@ -7,9 +7,9 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 export const RocketLaunchButton = () => {
-  const { dispatch, visitedNodeNumber,isRocketMoving,isTripStarted,isTripFinished } = useTimeLineNodes();
+  const { dispatch, visitedNodeNumber,isRocketMoving,isTripStarted,isTripFinished,isJoruenyModeActive } = useTimeLineNodes();
   const [isHovering,setIsHovering]=useState<boolean>(false);
-  const shouldDisplayButton=!isRocketMoving && isTripStarted && !isTripFinished;
+  const shouldDisplayButton=!isRocketMoving && isTripStarted && !isTripFinished && isJoruenyModeActive;
   const handleNextClick = () => {
     dispatch(nextNode());
     dispatch(setNodeOpen({ index: visitedNodeNumber, isOpen: false }));

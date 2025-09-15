@@ -5,6 +5,7 @@ import { AnimationVariants } from "@/utils/animation-utilities/animationVariants
 import arrowDownImage from "@/assets/ArrowDown.png";
 import { motion } from "framer-motion";
 import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 type ScrollingCallToActionButtonProps = {
   isVisible:boolean;
@@ -19,12 +20,14 @@ const ScrollingCallToActionButton = (
   const callToActionAnimationVariant = returnAnimationVariant(
     AnimationVariants.Bounce
   );
+  const {isJoruenyModeActive}=useTimeLineNodes();
+  
   const scrollDownOnClick = () => {
     if(isVisible)
     dispatch(setTripStarted({ isStarted: true }));
   };
   return (
-    <button className={className} ref={ref} onClick={scrollDownOnClick}>
+    <button className={cn(clsx(className,{"hidden":!isJoruenyModeActive}))} ref={ref} onClick={scrollDownOnClick}>
       <motion.img
         animate={callToActionAnimationVariant}
         src={arrowDownImage}

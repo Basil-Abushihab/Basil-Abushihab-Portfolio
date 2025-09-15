@@ -5,7 +5,7 @@ export enum ActionType {
   SET_TRIP_STARTED = "SET_TRIP_STARTED",
   SET_ROCKET_MOVING = "SET_ROCKET_MOVING",
   SET_TRIP_ENDED = "SET_TRIP_ENDED",
-  SET_WINDOW_POSITION = "SET_WINDOW_POSITION"
+  SET_JORUENY_MODE_ACTIVE="SET_JORUENY_MODE_ACTIVE",
 }
 
 type ActionPayloads = {
@@ -14,7 +14,7 @@ type ActionPayloads = {
   [ActionType.SET_TRIP_STARTED]: { isStarted: boolean };
   [ActionType.SET_ROCKET_MOVING]: { isMoving: boolean };
   [ActionType.SET_TRIP_ENDED]:{isEnded:boolean};
-  [ActionType.SET_WINDOW_POSITION]:{windowPositionY:number,windowPositionX:number}
+  [ActionType.SET_JORUENY_MODE_ACTIVE]:{isActive:boolean};
 };
 
 export type Action = {
@@ -47,7 +47,7 @@ export const setTripEnded = (payload:ActionPayloads[ActionType.SET_TRIP_ENDED]):
   payload
 })
 
-export const setWindowPosition=(payload:ActionPayloads[ActionType.SET_WINDOW_POSITION]):Action=>({
-  type:ActionType.SET_WINDOW_POSITION,
+export const setJourneyModeActive = (payload:ActionPayloads[ActionType.SET_JORUENY_MODE_ACTIVE]): Action => ({
+  type:ActionType.SET_JORUENY_MODE_ACTIVE,
   payload
 })

@@ -1,14 +1,17 @@
-import { topbarSectionItems } from "@/components/layout/top-bar/components/topbar-sections/models/topBarSection.model";
+import { topbarSectionItems } from "@/components/layout/top-bar/components/topbar-sections/models/topBarSection";
+import { useTopBarSections } from "@/components/layout/top-bar/components/topbar-sections/utils/sectionUtilities";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 type TopbarSectionsMobileProps = {
   isOpen?: boolean;
+  setOpen?:React.Dispatch<React.SetStateAction<boolean>>
 };
 
-export const TopbarSectionsMobile = ({ isOpen = true }: TopbarSectionsMobileProps) => {
+export const TopbarSectionsMobile = (props: TopbarSectionsMobileProps) => {
+  const {isOpen=true,setOpen}=props;
   const [shouldAnimateSection, setShouldAnimateSection] = useState(false);
-
+  const {applySectionSelection}=useTopBarSections(setOpen);
   // Trigger item animation only once, on first open
   useEffect(() => {
     if (isOpen && !shouldAnimateSection) setShouldAnimateSection(true);
@@ -39,8 +42,9 @@ export const TopbarSectionsMobile = ({ isOpen = true }: TopbarSectionsMobileProp
             damping: 20,
             delay: item.delay,
           }}
-          href={item.href}
+          href={`#${item.href}`}
           className="text-4xl text-white"
+          onClick={()=>{applySectionSelection(item)}}
         >
           {item.label}
         </motion.a>

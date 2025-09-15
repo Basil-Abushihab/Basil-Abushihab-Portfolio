@@ -34,7 +34,7 @@ export const ProjectsSection = (props: ProjectsSectionProps & BaseSectionProps) 
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
 
   const handleProjectClick = (projectName: string) => {
-    setSelectedProject(projectName);
+    setSelectedProject((prev) => (prev === projectName ? null : projectName));
   };
   return (
     <div className=" flex flex-col gap-10 font-satoshi">

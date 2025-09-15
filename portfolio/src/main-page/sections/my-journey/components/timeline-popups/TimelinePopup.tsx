@@ -30,7 +30,7 @@ const popoverSideOffset=useWindowBreakpointValue<number>({base:20,lg:30});
       side={isLastNode ? PopoverContentSide.Bottom : popoverSide}
       sideOffset={popoverSideOffset}
       avoidCollisions={false}
-      className={clsx("w-[350px] md:w-[500px] lg:w-[600px]",{"lg:w-[1500px]":isLastNode})}
+      className={clsx("w-[350px] md:w-[500px] lg:w-[600px] pointer-events-auto",{"lg:w-[1500px]":isLastNode})}
     >
       <TimelinePopupContent {...props} />
     </PopoverContent>

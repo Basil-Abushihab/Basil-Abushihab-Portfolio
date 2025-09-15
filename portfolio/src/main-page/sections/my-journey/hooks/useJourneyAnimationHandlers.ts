@@ -1,4 +1,4 @@
-import { setRocketMoving, setWindowPosition } from "@/context/actions";
+import { setRocketMoving} from "@/context/actions";
 import { useTimeLineNodes } from "@/context/TimelineNodesContext";
 import { useWindowBreakpointValue } from "@/hooks/windowUtilityHooks";
 import { useCallback } from "react";
@@ -15,12 +15,6 @@ export const useJourneyAnimationHandlers = (
 
   const onAnimationEnd = () => {
     dispatch(setRocketMoving({ isMoving: false }));
-    dispatch(
-      setWindowPosition({
-        windowPositionX: window.pageXOffset,
-        windowPositionY: window.pageYOffset,
-      })
-    );
   };
 
   const onAnimationUpdate = useCallback(() => {

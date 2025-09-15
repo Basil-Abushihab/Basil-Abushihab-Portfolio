@@ -20,7 +20,7 @@ export const Topbar = () => {
         {/*Topbar sections for large and medium screens*/}
         <TopbarSections/> 
         {/*Topbar section for mobile screens*/}
-        <TopbarSectionsMobile isOpen={isMobileOptionsOpen}/>
+        <TopbarSectionsMobile isOpen={isMobileOptionsOpen} setOpen={setIsMobileOptionsOpen}/>
         {/*Hamburger menu button for mobile screens*/}
         <HamburgerMenuButton isOpen={isMobileOptionsOpen} setIsOpen={setIsMobileOptionsOpen}/>
       </header>

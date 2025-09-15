@@ -1,6 +1,7 @@
 import { motion, type Variants } from "framer-motion";
 import { useState } from "react";
 import { heroText } from "@/content/heroSectionContent";
+import { JourneyControlButton } from "@/components/JourneyControlButton";
 
   const iconSize = 50;
 
@@ -93,6 +94,7 @@ const [iconDelayMultiplier,setIconDelayMultiplier]=useState<number>(1)
             />
           </a>
           )}
+          <JourneyControlButton custom={3.8*iconDelayMultiplier} variants={socialIconVariant} initial="hidden" animate="visible" whileHover="hover"/>
         </div>
       </div>
     </div>

@@ -25,6 +25,7 @@ import {
   type ProjectsSectionProps,
 } from "@/main-page/sections/my-journey/components/timeline-popups/popups-sections/projects-section/ProjectsSection";
 import { projectsCollection } from "@/content/timelineNodes/projectsCollection";
+import { SectionTitles } from "@/components/layout/top-bar/components/topbar-sections/models/topBarSection";
 
 //@TODO: Transform the content to be saved on the cloud using firebase for better scalability and easy access for updates.
 
@@ -50,11 +51,13 @@ export type TimelineNode = {
   nodeAnimationVariants: AnimationVariants;
   isLastNode: boolean;
   isOpen: boolean;
+  id?:SectionTitles
 };
 
 export const timeLineNodes: TimelineNode[] = [
   {
     nodeImg: basilAstronaut,
+    id:SectionTitles.MyJourney,
     nodeAnimationVariants: AnimationVariants.MoveUpAndDown,
     nodeLabel: "Me",
     nodeContent: {
@@ -185,6 +188,7 @@ export const timeLineNodes: TimelineNode[] = [
   {
     nodeAnimationVariants: AnimationVariants.MoveUpAndDown,
     nodeLabel: "Projects Debrief",
+    id:SectionTitles.MyMissions,
     nodeImg: projectsDebrief,
     nodeContent: {
       sections: [

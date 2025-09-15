@@ -8,11 +8,12 @@ import { cn } from "@/lib/utils";
 import clsx from "clsx";
 import { useWindowBreakpointValue } from "@/hooks/windowUtilityHooks";
 import { useJourneyAnimationHandlers } from "@/main-page/sections/my-journey/hooks/useJourneyAnimationHandlers";
+import { StarLayer } from "@/components/layout/stars-layer/StarLayer";
 
 export const MyJourney = () => {
   const windowScrollAlignment=useWindowBreakpointValue<ScrollLogicalPosition>({base:"start",lg:"center"});
   const timelineContainerRef = useRef<(HTMLDivElement | null)[]>([]);
-  const { timelineNodes,isTripStarted} = useTimeLineNodes();
+  const { timelineNodes,isTripStarted,isJoruenyModeActive} = useTimeLineNodes();
   const rocketRef = useRef<SVGSVGElement | null>(null);
   const { rocketOffset } = useRocketJourneyEffects(timelineContainerRef);
   const {onAnimationEnd,onAnimationStart,onAnimationUpdate}=useJourneyAnimationHandlers(rocketRef);
@@ -24,14 +25,15 @@ export const MyJourney = () => {
   },[isTripStarted])
 
   return (
-    <div className={cn("flex flex-col items-center justify-center w-full mt-60  md:mt-70",clsx({"hidden":!isTripStarted,"relative":isTripStarted}))}>
+    <div className={cn("flex flex-col items-center justify-center w-full mt-60 relative md:mt-70",clsx({"hidden":!isTripStarted && isJoruenyModeActive}))}>
+      <StarLayer/>
       <Rocket
         ref={rocketRef}
         height="80px"
         width="80px"
         debrisOffsetX={-10}
         debrisOffsetY={40}
-        className="absolute z-50 rotate-180 translate-x-20 top-0"
+        className={clsx("absolute z-50 rotate-180 translate-x-20 top-0",{"opacity-0":!isJoruenyModeActive})}
         initial={{ y: 10 }}
         animate={{ y: -rocketOffset, transition: { duration: 3 } }}
         transition={{
@@ -62,6 +64,7 @@ export const MyJourney = () => {
             isOpen={node.isOpen}
             nodeContent={node.nodeContent}
             nodeIndex={index}
+            id={node.id}
           />
         </div>
       ))}

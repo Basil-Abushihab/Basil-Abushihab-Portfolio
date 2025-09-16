@@ -41,6 +41,7 @@ export const HeroSectionIntroduction = () => {
   since its effecting the hovering effect.
 */ 
 const [iconDelayMultiplier,setIconDelayMultiplier]=useState<number>(1)
+const [isAnimationComplete,setAnimationComplete]=useState(false);
 
   return (
     <div className="flex justify-center flex-col gap-10 w-full z-10 items-center md:w-[60%] lg:w-[60%] md:items-baseline lg:items-baseline">
@@ -51,7 +52,9 @@ const [iconDelayMultiplier,setIconDelayMultiplier]=useState<number>(1)
         animate="visible"
         className="text-2xl md:text-4xl lg:text-5xl font-satoshi text-white"
       >
-        {heroText.title.greeting}<span className="text-secondary text-bold">,</span> {heroText.title.name}
+        {heroText.title.greeting}
+        <span className="text-secondary text-bold">,</span>{" "}
+        {heroText.title.name}
       </motion.h1>
 
       {/* Subtitle */}
@@ -61,7 +64,10 @@ const [iconDelayMultiplier,setIconDelayMultiplier]=useState<number>(1)
         animate="visible"
         className="text-lg md:text-xl lg:text-2xl font-satoshi text-white text-center md:text-left lg:text-left"
       >
-        {heroText.subtitle.part1} <span className="text-secondary font-bold">{heroText.subtitle.highlight}</span>{" "}
+        {heroText.subtitle.part1}{" "}
+        <span className="text-secondary font-bold">
+          {heroText.subtitle.highlight}
+        </span>{" "}
         {heroText.subtitle.part2}
       </motion.h2>
 
@@ -73,28 +79,40 @@ const [iconDelayMultiplier,setIconDelayMultiplier]=useState<number>(1)
           animate="visible"
           className="text-lg md:text-xl lg:text-2xl font-satoshi text-white text-center md:text-left lg:text-left"
         >
-          {heroText.connect.part1} <span className="text-secondary font-bold">{heroText.connect.highlight}</span> {heroText.connect.part2}
+          {heroText.connect.part1}{" "}
+          <span className="text-secondary font-bold">
+            {heroText.connect.highlight}
+          </span>{" "}
+          {heroText.connect.part2}
         </motion.h3>
 
         {/* Social Icons */}
         <div className="flex items-center gap-5 justify-center md:justify-start lg:justify-start">
-          {heroText.socialLinks.map((socialLink,index)=>
-          <a href={socialLink.href} target="_blank" key={index}>
-            <motion.img
-              custom={socialLink.delay*iconDelayMultiplier}
-              variants={socialIconVariant}
-              initial="hidden"
-              animate="visible"
-              whileHover="hover"
-              src={socialLink.imgSrc}
-              height={iconSize}
-              width={iconSize}
-              onAnimationComplete={()=>setIconDelayMultiplier(0)}
-              alt={socialLink.label}
-            />
-          </a>
-          )}
-          <JourneyControlButton custom={3.8*iconDelayMultiplier} variants={socialIconVariant} initial="hidden" animate="visible" whileHover="hover"/>
+          {heroText.socialLinks.map((socialLink, index) => (
+            <a href={socialLink.href} target="_blank" key={index}>
+              <motion.img
+                custom={socialLink.delay * iconDelayMultiplier}
+                variants={socialIconVariant}
+                initial="hidden"
+                animate="visible"
+                whileHover="hover"
+                src={socialLink.imgSrc}
+                height={iconSize}
+                width={iconSize}
+                onAnimationComplete={() => setIconDelayMultiplier(0)}
+                alt={socialLink.label}
+              />
+            </a>
+          ))}
+          <JourneyControlButton
+            isAnimationComplete={isAnimationComplete}
+            custom={3.8 * iconDelayMultiplier}
+            variants={socialIconVariant}
+            initial="hidden"
+            animate="visible"
+            whileHover="hover"
+            onAnimationComplete={() => setAnimationComplete(true)}
+          />
         </div>
       </div>
     </div>

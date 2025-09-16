@@ -11,11 +11,10 @@ import { motion } from "framer-motion";
 
 type JourneyControlButtonComponentProps = {
   ref?: React.Ref<HTMLDivElement>;
+  isAnimationComplete:boolean
 };
-const JourneyControlButtonComponent = (
-  props: JourneyControlButtonComponentProps
-) => {
-  const { ref } = props;
+const JourneyControlButtonComponent = (props: JourneyControlButtonComponentProps) => {
+  const { ref,isAnimationComplete } = props;
   const { dispatch, isJoruenyModeActive, isTripFinished } = useTimeLineNodes();
   const toggleJourneyMode = () => {
     if(isTripFinished){
@@ -26,7 +25,7 @@ const JourneyControlButtonComponent = (
   };
   return (
     <div ref={ref}>
-      <Tooltip open>
+      <Tooltip open={isAnimationComplete}>
         <TooltipTrigger
           onClick={toggleJourneyMode}
           className="w-12 h-12 flex justify-center items-center rounded-full shadow-[0_0_12px_rgba(88,175,255,0.35),_inset_0_0_12px_rgba(88,175,255,0.12)] ring-2 ring-blue-400 bg-main overflow-clip cursor-pointer"

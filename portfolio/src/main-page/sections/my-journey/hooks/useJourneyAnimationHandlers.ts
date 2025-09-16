@@ -21,11 +21,8 @@ export const useJourneyAnimationHandlers = (
     if (!rocketRef.current) return;
     const rect = rocketRef.current.getBoundingClientRect();
     const rocketTop = rect.top;
-    const rocketHeight = rect.height;
-    const scrollTop = rocketTop + rocketHeight / 2 - window.innerHeight / 2;
-    const alignmentFactor = isMobile ? rocketTop - 30 : scrollTop;
     window.scrollTo({
-      top: alignmentFactor + window.scrollY,
+      top: rocketTop-40 + window.scrollY,
       behavior: "auto",
     });
   }, [isMobile]);

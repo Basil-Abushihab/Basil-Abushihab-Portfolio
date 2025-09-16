@@ -3,6 +3,7 @@ import GithubLogo from "@/assets/GitHubLogo.svg";
 import LinkedinLogo from "@/assets/LinkedInLogo.svg";
 import CVLogo from "@/assets/CV.png";
 import EmailLogo from "@/assets/Email.png";
+import BasilCvFile from "@/assets/basil-abushihab-fullstack-developer.pdf";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 import { SectionTitles } from "@/components/layout/top-bar/components/topbar-sections/models/topBarSection";
@@ -43,22 +44,22 @@ export const Contact = () => {
         </p>
         <div className="flex gap-4 mt-4 items-center">
           <a
-            href="https://www.linkedin.com/in/basil-abushihab/"
+            href="https://github.com/Basil-Abushihab"
             target="_blank"
             className="px-4 py-2 bg-main text-white rounded-lg shadow hover:bg-main/80 transition"
           >
             <motion.img initial={{scale:1}} whileHover={{scale:1.2}} src={GithubLogo} className="w-10 h-10" />
           </a>
           <a
-            href="https://github.com/Basil-Abushihab"
+            href="https://www.linkedin.com/in/basil-abushihab/"
             target="_blank"
             
           >
             <motion.img initial={{scale:1}} whileHover={{scale:1.2}} src={LinkedinLogo} className="w-10 h-10" />
           </a>
            <a
-            href="https://github.com/Basil-Abushihab"
-            target="_blank"
+            href={BasilCvFile}
+            download
             
           >
             <motion.img initial={{scale:1}} whileHover={{scale:1.2}} src={CVLogo} className="w-10 h-10" />

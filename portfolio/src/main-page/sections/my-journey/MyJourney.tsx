@@ -6,12 +6,10 @@ import {  useEffect, useRef } from "react";
 import { useTimeLineNodes } from "@/context/TimelineNodesContext";
 import { cn } from "@/lib/utils";
 import clsx from "clsx";
-import { useWindowBreakpointValue } from "@/hooks/windowUtilityHooks";
 import { useJourneyAnimationHandlers } from "@/main-page/sections/my-journey/hooks/useJourneyAnimationHandlers";
 import { StarLayer } from "@/components/layout/stars-layer/StarLayer";
 
 export const MyJourney = () => {
-  const windowScrollAlignment=useWindowBreakpointValue<ScrollLogicalPosition>({base:"start",lg:"center"});
   const timelineContainerRef = useRef<(HTMLDivElement | null)[]>([]);
   const { timelineNodes,isTripStarted,isJoruenyModeActive} = useTimeLineNodes();
   const rocketRef = useRef<SVGSVGElement | null>(null);
@@ -20,8 +18,12 @@ export const MyJourney = () => {
 
 
   useEffect(()=>{
-    if(isTripStarted)
-    rocketRef.current?.scrollIntoView({ block: windowScrollAlignment, behavior: "smooth" });
+    
+    if(isTripStarted && rocketRef.current){
+      const rect = rocketRef.current.getBoundingClientRect();
+    const rocketTop = rect.top;
+    window.scrollTo({top:rocketTop - 40 + window.scrollY,behavior:"smooth"})
+    }
   },[isTripStarted])
 
   return (

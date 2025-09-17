@@ -5,6 +5,7 @@ import {
 } from "@/components/ui/tooltip";
 import { resetJourneyMode, setJourneyModeActive } from "@/context/actions";
 import { useTimeLineNodes } from "@/context/TimelineNodesContext";
+import { useWindowBreakpointValue } from "@/hooks/windowUtilityHooks";
 import { Rocket } from "@/main-page/sections/my-journey/components/rocket/Rocket";
 import clsx from "clsx";
 import { motion } from "framer-motion";
@@ -13,9 +14,15 @@ type JourneyControlButtonComponentProps = {
   ref?: React.Ref<HTMLDivElement>;
   isAnimationComplete:boolean
 };
+
+
 const JourneyControlButtonComponent = (props: JourneyControlButtonComponentProps) => {
   const { ref,isAnimationComplete } = props;
   const { dispatch, isJoruenyModeActive, isTripFinished } = useTimeLineNodes();
+  const tooltipAlignment = useWindowBreakpointValue<"right" | "left" | "bottom" | "top">({
+    base: "bottom",
+    md: "right",
+  });
   const toggleJourneyMode = () => {
     if(isTripFinished){
       dispatch(resetJourneyMode());
@@ -45,7 +52,7 @@ const JourneyControlButtonComponent = (props: JourneyControlButtonComponentProps
         </TooltipTrigger>
         <TooltipContent
           className="bg-white fill-white text-black"
-          side="right"
+          side={tooltipAlignment}
         >
           <p>
             {isJoruenyModeActive

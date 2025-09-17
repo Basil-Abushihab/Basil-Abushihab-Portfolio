@@ -20,19 +20,20 @@ enum PopoverContentSide {
 export type TimeLinePopupProps = Omit<TimelineNode, "nodeAnimationVariants" | "nodeImg"> & { nodeIndex: number };
 export const TimelinePopup = (props:TimeLinePopupProps) => { 
 const {isLastNode}=props;
-const popoverAlignment= useWindowBreakpointValue<PopoverContentAlignment>({base:PopoverContentAlignment.Center,lg:PopoverContentAlignment.Start});
-const popoverSide= useWindowBreakpointValue<PopoverContentSide>({base:PopoverContentSide.Bottom,lg:PopoverContentSide.Left});
 const popoverSideOffset=useWindowBreakpointValue<number>({base:20,lg:30});
 
   return (
-    <PopoverContent
-      align={isLastNode ? PopoverContentAlignment.Center : popoverAlignment}
-      side={isLastNode ? PopoverContentSide.Bottom : popoverSide}
-      sideOffset={popoverSideOffset}
-      avoidCollisions={false}
-      className={clsx("w-[350px] md:w-[500px] lg:w-[600px] pointer-events-auto",{"lg:w-[1500px]":isLastNode})}
-    >
-      <TimelinePopupContent {...props} />
-    </PopoverContent>
+   <PopoverContent
+  align={PopoverContentAlignment.Center}
+  side={PopoverContentSide.Bottom}
+  sideOffset={popoverSideOffset}
+  avoidCollisions={false}
+  className={clsx(
+    "h-[80vh] max-w-[1500px] pointer-events-auto", 
+    { "w-[90vw] md:w-[60vw] lg:w-[35vw]": !isLastNode,"w-[90vw]":isLastNode } 
+  )}
+>
+  <TimelinePopupContent {...props} />
+</PopoverContent>
   );
 };

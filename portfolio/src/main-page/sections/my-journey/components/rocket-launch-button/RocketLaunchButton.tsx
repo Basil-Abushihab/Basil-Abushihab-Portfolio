@@ -5,7 +5,11 @@ import { RocketLaunchButtonBackground } from "@/main-page/sections/my-journey/co
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export const RocketLaunchButton = () => {
   const {
@@ -25,7 +29,7 @@ export const RocketLaunchButton = () => {
   };
 
   return (
-    <Tooltip open={!isHovering&&shouldDisplayButton}>
+    <Tooltip open={!isHovering && shouldDisplayButton}>
       <TooltipTrigger asChild>
         <motion.button
           className={clsx(
@@ -52,8 +56,15 @@ export const RocketLaunchButton = () => {
             className="rotate-45"
           />
         </motion.button>
-        </TooltipTrigger>
-      <TooltipContent className="bg-white fill-white text-black text-md font-satoshi">Engae Thrusters! 🚀</TooltipContent>
+      </TooltipTrigger>
+      <TooltipContent
+        side="left"
+        className={clsx("bg-white fill-white text-black text-md font-satoshi", {
+          hidden: visitedNodeNumber > 0,
+        })}
+      >
+        Engae Thrusters! 🚀
+      </TooltipContent>
     </Tooltip>
   );
 };

@@ -15,7 +15,7 @@ export const Contact = () => {
     <div
       id={SectionTitles.JoinMe}
       className={clsx(
-        "mt-[1200px] mb-10 w-full flex flex-col md:flex-row justify-center items-start gap-12 px-8",
+        "mt-[850px] mb-10 w-full flex flex-col md:flex-row justify-center items-start gap-12 px-8",
         { hidden: !isTripStarted && isJoruenyModeActive }
       )}
     >

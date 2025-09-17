@@ -45,7 +45,7 @@ const JourneyControlButtonComponent = (props: JourneyControlButtonComponentProps
         </TooltipTrigger>
         <TooltipContent
           className="bg-white fill-white text-black"
-          side="bottom"
+          side="right"
         >
           <p>
             {isJoruenyModeActive
